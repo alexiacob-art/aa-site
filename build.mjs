@@ -1,6 +1,7 @@
 // Generează site-ul static în ./dist
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const DIST = path.join(ROOT, 'dist');
@@ -26,6 +27,8 @@ for (const [out, src] of Object.entries(fonts)) fs.copyFileSync(fp(src), path.jo
 fs.copyFileSync(path.join(ROOT, 'src/styles.css'), path.join(DIST, 'assets/styles.css'));
 fs.copyFileSync(path.join(ROOT, 'src/main.js'), path.join(DIST, 'assets/main.js'));
 fs.copyFileSync(path.join(ROOT, 'src/diag.js'), path.join(DIST, 'assets/diag.js'));
+const ver = (f) => crypto.createHash('md5').update(fs.readFileSync(path.join(ROOT, 'src', f))).digest('hex').slice(0, 8);
+const V = { css: ver('styles.css'), main: ver('main.js'), diag: ver('diag.js') };
 for (const f of ['og.png', 'logo.png']) if (fs.existsSync(path.join(ROOT, 'src', f))) fs.copyFileSync(path.join(ROOT, 'src', f), path.join(DIST, 'assets', f));
 if (fs.existsSync(path.join(ROOT, 'src/img')))fs.cpSync(path.join(ROOT, 'src/img'), path.join(DIST, 'assets/img'), { recursive: true });
 
@@ -288,7 +291,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : '<meta name="robots" cont
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/plex-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="/assets/styles.css?v=${V.css}">
 ${ldAll}
 </head>
 <body>
@@ -314,7 +317,7 @@ ${body}
 <div class="legalrow"><span>© 2026 A&amp;A Industrial Systems S.R.L.</span><span>CUI RO 51659678, Reg. Com. J2025028230008. Sediu social: Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava.</span></div>
 </div></footer>
 <div class="float-cta"><a class="fc-call" href="tel:${TEL_HREF}" aria-label="Sună ${TEL}">${I.phone}</a><a class="fc-wa" href="https://wa.me/${TEL_HREF.replace('+', '')}" rel="noopener" aria-label="Scrie-ne pe WhatsApp">${I.wa}</a></div>
-<script src="/assets/main.js" defer></script>
+<script src="/assets/main.js?v=${V.main}" defer></script>
 </body></html>`;
   pages.push({ url, html, noindex });
 }
@@ -385,7 +388,6 @@ layout({
 <img class="hero-bg" src="/assets/img/cta-ventas-acoperis-1.jpg" alt="" fetchpriority="high">
 <div class="hero-shade" aria-hidden="true"></div>
 <div class="hero-grid" aria-hidden="true"></div>
-<div class="hero-mark2" aria-hidden="true">${mark({ draw: true, top: '#fff' })}</div>
 <div class="wrap hero2-in">
 <span class="pill">Florești, Cluj · Lucrăm în Transilvania</span>
 <h1>Instalații HVAC<br><em>pentru clădiri publice și industriale</em></h1>
@@ -549,7 +551,7 @@ layout({
 </div>
 <p style="margin-top:28px;color:var(--muted)">Ai nevoie de o estimare a capacității? Folosește <a href="/calculator-hvac/">calculatorul HVAC</a>.</p>
 </div></section>
-<script src="/assets/diag.js" defer></script>
+<script src="/assets/diag.js?v=${V.diag}" defer></script>
 ${ctaBand('Preferi să vorbești cu un tehnician?', 'Sună sau scrie-ne și programăm verificarea echipamentului.')}`,
 });
 
@@ -650,8 +652,16 @@ fs.writeFileSync(path.join(DIST, '_headers'), `/*
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-/assets/*
+/assets/img/*
+  Cache-Control: public, max-age=2592000
+/assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
+/assets/styles.css
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/main.js
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/diag.js
+  Cache-Control: public, max-age=0, must-revalidate
 `);
 // versiune albă a logo-ului pentru OG / social
 fs.writeFileSync(path.join(ROOT, 'og-source.html'), `<!doctype html><meta charset=utf-8><style>@font-face{font-family:B;src:url(dist/assets/fonts/bricolage-latin.woff2)}body{margin:0;width:1200px;height:630px;background:#0A1628;display:flex;align-items:center;gap:56px;padding:0 96px;box-sizing:border-box;font-family:B}svg{width:300px;flex:none}h1{color:#fff;font-size:76px;line-height:1.02;margin:0;font-weight:800;letter-spacing:-2px}p{color:#3BA7E0;font:600 30px B;margin:22px 0 0}</style>${mark({ top: '#fff' })}<div><h1>A&amp;A Industrial Systems</h1><p>Instalații HVAC, VRF, CTA, mentenanță</p></div>`);
