@@ -195,7 +195,7 @@ const projects = [
     slug: 'muzeul-mutra',
     name: 'Muzeul Mutra, Florești',
     status: 'Finalizat, octombrie 2026',
-    desc: 'Montaj și punere în funcțiune centrale de tratare a aerului (CTA).',
+    desc: 'Montaj și punere în funcțiune a 4 centrale de tratare a aerului (CTA). Am verificat automatizarea Siemens, ventilatoarele, clapetele și regimurile de funcționare, apoi am pornit unitățile în fața beneficiarului.',
     tags: ['CTA', 'Ventilație'],
   },
   {
@@ -204,6 +204,20 @@ const projects = [
     status: 'În execuție din septembrie 2026',
     desc: 'Montaj tubulatură de ventilație și trasee frigorifice pentru sistemul VRF.',
     tags: ['Ventilație', 'VRF'],
+  },
+  {
+    slug: 'sala-sport-rooftop',
+    name: 'Sală de sport, echipament rooftop',
+    status: 'În execuție',
+    desc: 'Montaj tubulatură aferentă unui echipament rooftop. Lucrăm și în weekend, ca să respectăm termenul asumat.',
+    tags: ['Rooftop', 'Ventilație'],
+  },
+  {
+    slug: 'sistem-vrf-lg-atrea',
+    name: 'Sistem VRF LG Multi V cu CTA ATREA',
+    status: 'Finalizat',
+    desc: 'Punere în funcțiune: LG Multi V, CTA ATREA cu baterie DX și AHU Communication Kit, integrate în automatizarea clădirii. Performanțele au fost validate cu măsurători și raport tehnic Testo.',
+    tags: ['VRF', 'CTA', 'Automatizare'],
   },
 ];
 
@@ -305,18 +319,21 @@ function projVisual(slug) {
 
 const svcPhotos = {
   'pompe-de-caldura-chillere': ['chillere-hidros', 'Chillere și pompe de căldură montate în exterior'],
-  'ventilatie-cta': ['rooftop-ett', 'Unitate rooftop montată pe acoperiș'],
+  'ventilatie-cta': ['cta-ventas-acoperis-1', 'Centrale de tratare a aerului montate pe acoperiș'],
   'service-mentenanta': ['diagnostic-placa-inverter', 'Verificarea secțiunii electrice a unei unități exterioare'],
 };
 const svcPhoto = (slug) => (svcPhotos[slug] ? `<section class="photo-sec"><div class="wrap"><figure class="photo"><img src="/assets/img/${svcPhotos[slug][0]}.jpg" alt="${svcPhotos[slug][1]}" loading="lazy"><figcaption>${svcPhotos[slug][1]}</figcaption></figure></div></section>` : '');
 
 const gallery = [
+  ['cta-ventas-acoperis-1', 'Centrale de tratare a aerului Ventas, montate pe acoperiș'],
   ['chillere-hidros', 'Chillere și pompe de căldură, montaj exterior'],
+  ['tubulatura-spiro-sala', 'Tubulatură spiro montată într-o sală'],
+  ['cta-ventas-acoperis-2', 'CTA cu racorduri de tubulatură și conducte izolate'],
+  ['conducte-izolate-suporti', 'Conducte izolate pe suporți, lângă tubulatură'],
+  ['tubulatura-plafon', 'Trasee de tubulatură la plafon'],
+  ['racorduri-ventilatie', 'Racorduri de ventilație pregătite pentru finisaje'],
   ['rooftop-ett', 'Unitate rooftop pe acoperiș'],
-  ['daikin-restaurant', 'Unitate interioară într-un spațiu HoReCa'],
-  ['split-exterior', 'Unitate exterioară montată la fațadă'],
-  ['daikin-intrare', 'Unitate exterioară Daikin la intrarea în clădire'],
-  ['split-interior', 'Unitate interioară montată pe perete'],
+  ['tubulatura-coridor', 'Tubulatură și tăvi de cabluri pe coridor'],
 ];
 
 // ---------- pagini ----------
