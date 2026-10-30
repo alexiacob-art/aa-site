@@ -2,6 +2,10 @@
   "name": "aa-site",
   "main": "worker.js",
   "compatibility_date": "2026-10-01",
+  "routes": [
+    { "pattern": "aaindustrialsystems.ro", "custom_domain": true },
+    { "pattern": "www.aaindustrialsystems.ro", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
