@@ -280,7 +280,7 @@ ${ldAll}
 <body>
 <a class="skip" href="#continut">Sari la conținut</a>
 <header class="site-header"><div class="wrap">
-${brand()}
+${brand(true)}
 <button class="menu-btn" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><span></span></button>
 <nav class="nav" id="nav" aria-label="Principal">
 ${nav.map(([h, l]) => `<a href="${h}"${current === h ? ' aria-current="page"' : ''}>${l}</a>`).join('\n')}
@@ -299,6 +299,7 @@ ${body}
 </div>
 <div class="legalrow"><span>© 2026 A&amp;A Industrial Systems S.R.L.</span><span>CUI RO 51659678, Reg. Com. J2025028230008. Sediu social: Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava.</span></div>
 </div></footer>
+<div class="float-cta"><a class="fc-call" href="tel:${TEL_HREF}" aria-label="Sună ${TEL}">${I.phone}</a><a class="fc-wa" href="https://wa.me/${TEL_HREF.replace('+', '')}" rel="noopener" aria-label="Scrie-ne pe WhatsApp">${I.wa}</a></div>
 <script src="/assets/main.js" defer></script>
 </body></html>`;
   pages.push({ url, html, noindex });
@@ -341,6 +342,23 @@ const gallery = [
   ['atrea-duplex-multi', 'Unitate de ventilație cu recuperare ATREA DUPLEX Multi'],
 ];
 
+const I = {
+  arrow: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  phone: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+  wa: '<svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3.3 8.7 3.3 15.7c0 2.3.6 4.4 1.7 6.3L3 29l7.2-1.9a12.7 12.7 0 0 0 5.8 1.4c7 0 12.7-5.7 12.7-12.7S23 3 16 3zm0 23.2c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.3 1.1 1.1-4.2-.3-.4a10.4 10.4 0 1 1 9.2 5.2zm5.7-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.5 8.5 0 0 1-4.2-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.3 3.4 14.6 14.6 0 0 0 5.6 4.9c2.1.9 2.9.9 3.9.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.1-.3-.2-.6-.4z"/></svg>',
+  calc: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8.5 7h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></svg>',
+  diag: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4 12 2.5-6H21"/></svg>',
+};
+
+const svcImg = {
+  'vrf-climatizare': 'sistem-vrf-lg-atrea',
+  'ventilatie-cta': 'cta-ventas-acoperis-1',
+  'pompe-de-caldura-chillere': 'chillere-hidros',
+  'automatizari-bms': 'diagnostic-placa-inverter',
+  'service-mentenanta': 'lg-unitate-exterioara-pif',
+};
+const svcCards = () => `<div class="svc-grid">${services.map((s, i) => `<a class="svc-card reveal" href="/servicii/${s.slug}/"><div class="svc-img"><img src="/assets/img/${svcImg[s.slug]}.jpg" alt="" loading="lazy"><span class="svc-n">0${i + 1}</span></div><div class="svc-body"><h3>${s.name}</h3><p>${s.short}</p><span class="go">Detalii ${I.arrow}</span></div></a>`).join('')}</div>`;
+
 // ---------- pagini ----------
 // Acasă
 layout({
@@ -349,53 +367,64 @@ layout({
   desc: 'Montăm, punem în funcțiune și întreținem sisteme VRF, centrale de tratare a aerului, chillere, pompe de căldură și automatizări. Florești, Cluj. Lucrăm în Transilvania.',
   current: '/',
   body: `
-<section class="hero" style="padding:0"><div class="wrap">
-<div>
-<h1>Instalații HVAC pentru clădiri publice și industriale</h1>
-<p class="lead">Montăm, punem în funcțiune și întreținem sisteme VRF, centrale de tratare a aerului, chillere și automatizări. Lucrăm în Transilvania.</p>
-<div class="actions"><a class="btn" href="/contact/">Cere ofertă</a><a class="btn ghost" href="tel:${TEL_HREF}">${TEL}</a></div>
+<section class="hero2">
+<img class="hero-bg" src="/assets/img/cta-ventas-acoperis-1.jpg" alt="" fetchpriority="high">
+<div class="hero-shade" aria-hidden="true"></div>
+<div class="hero-grid" aria-hidden="true"></div>
+<div class="hero-mark2" aria-hidden="true">${mark({ draw: true, top: '#fff' })}</div>
+<div class="wrap hero2-in">
+<span class="pill">Florești, Cluj · Lucrăm în Transilvania</span>
+<h1>Instalații HVAC<br><em>pentru clădiri publice și industriale</em></h1>
+<p class="hero-lead">Montăm, punem în funcțiune și întreținem sisteme VRF, centrale de tratare a aerului, chillere și automatizări. Predăm instalația probată și funcțională.</p>
+<div class="actions"><a class="btn accent" href="/contact/">Cere ofertă ${I.arrow}</a><a class="btn outline-light" href="tel:${TEL_HREF}">${I.phone} Sună acum</a></div>
+<ul class="chips">${services.map((s) => `<li><a href="/servicii/${s.slug}/">${s.name}</a></li>`).join('')}</ul>
 </div>
-<div class="hero-mark" aria-hidden="true">${mark({ draw: true })}</div>
-</div>
-<dl class="facts">
-<div><dt>Experiență</dt><dd>9 ani de HVAC în echipa de execuție</dd></div>
-<div><dt>Domenii</dt><dd>VRF, CTA, ventilație, chillere, pompe de căldură, automatizări</dd></div>
-<div><dt>Zonă</dt><dd>Transilvania, cu punct de lucru în Florești, Cluj</dd></div>
-</dl>
+<div class="wrap"><dl class="facts2">
+<div><dt>9 ani</dt><dd>de HVAC în echipa de execuție</dd></div>
+<div><dt>5 domenii</dt><dd>VRF, CTA, chillere, pompe de căldură, automatizări</dd></div>
+<div><dt>Montaj + PIF</dt><dd>de la traseu la punerea în funcțiune</dd></div>
+</dl></div>
 </section>
 
 <section><div class="wrap">
-<div class="sec-head"><h2>Ce executăm</h2><p>Cinci domenii, de la montaj la mentenanță. Fiecare lucrare se predă probată și funcțională.</p></div>
-<ul class="svc">
-${services.map((s) => `<li><a href="/servicii/${s.slug}/"><h3>${s.name}</h3><p>${s.short}</p><span class="go">Detalii</span></a></li>`).join('\n')}
-</ul>
+<div class="sec-head"><div><span class="eyebrow">Servicii</span><h2>Ce executăm</h2></div><p>Cinci domenii, de la montaj la mentenanță. Fiecare lucrare se predă probată și funcțională.</p></div>
+${svcCards()}
 </div></section>
 
-<section class="alt"><div class="wrap">
-<div class="sec-head"><h2>Cum decurge o lucrare</h2><p>Un proces simplu, cu un singur interlocutor de la ofertă până la predare.</p></div>
+<section class="dark steps-sec"><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Proces</span><h2>Cum decurge o lucrare</h2></div><p>Un proces simplu, cu un singur interlocutor de la ofertă până la predare.</p></div>
 <ol class="steps">
-<li><h3>Analiză</h3><p>Primim planșele și caietul de sarcini. Verificăm cantitățile și clarificăm ce intră în ofertă.</p></li>
-<li><h3>Ofertă</h3><p>Preț detaliat pe echipament și activitate, cu materiale și manoperă separate.</p></li>
-<li><h3>Montaj</h3><p>Execuție pe etape, coordonată cu ceilalți executanți de pe șantier.</p></li>
-<li><h3>Punere în funcțiune</h3><p>Probe, reglaje și verificarea parametrilor. Predăm instalația funcțională.</p></li>
-<li><h3>Mentenanță</h3><p>Contract de mentenanță, dacă beneficiarul dorește continuitate.</p></li>
+<li class="reveal"><h3>Analiză</h3><p>Primim planșele și caietul de sarcini. Verificăm cantitățile și clarificăm ce intră în ofertă.</p></li>
+<li class="reveal"><h3>Ofertă</h3><p>Preț detaliat pe echipament și activitate, cu materiale și manoperă separate.</p></li>
+<li class="reveal"><h3>Montaj</h3><p>Execuție pe etape, coordonată cu ceilalți executanți de pe șantier.</p></li>
+<li class="reveal"><h3>Punere în funcțiune</h3><p>Probe, reglaje și verificarea parametrilor. Predăm instalația funcțională.</p></li>
+<li class="reveal"><h3>Mentenanță</h3><p>Contract de mentenanță, dacă beneficiarul dorește continuitate.</p></li>
 </ol>
 </div></section>
 
-<section class="dark"><div class="wrap">
-<div class="sec-head"><h2>Pentru cine lucrăm</h2><p>Lucrăm direct cu beneficiarii și ca subcontractor pentru constructori generali.</p></div>
-<div class="aud">
-<div><h3>Instituții publice</h3><p>Școli, creșe, săli de sport, spitale, muzee. Ofertăm pentru achiziții directe.</p></div>
-<div><h3>Constructori generali</h3><p>Preluăm instalațiile HVAC ca subcontractor: doar manoperă sau material și manoperă.</p></div>
-<div><h3>Spații comerciale și industriale</h3><p>Birouri, hale și spații tehnice, cu sisteme VRF, ventilație și automatizări.</p></div>
-<div><h3>Beneficiari cu echipamente existente</h3><p>Mentenanță, înlocuire de filtre, igienizare și service la unități deja montate.</p></div>
+<section class="alt"><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Clienți</span><h2>Pentru cine lucrăm</h2></div><p>Lucrăm direct cu beneficiarii și ca subcontractor pentru constructori generali.</p></div>
+<div class="aud2">
+<div class="reveal"><h3>Instituții publice</h3><p>Școli, creșe, săli de sport, spitale, muzee. Ofertăm pentru achiziții directe.</p></div>
+<div class="reveal"><h3>Constructori generali</h3><p>Preluăm instalațiile HVAC ca subcontractor: doar manoperă sau material și manoperă.</p></div>
+<div class="reveal"><h3>Spații comerciale și industriale</h3><p>Birouri, hale și spații tehnice, cu sisteme VRF, ventilație și automatizări.</p></div>
+<div class="reveal"><h3>Beneficiari cu echipamente existente</h3><p>Mentenanță, înlocuire de filtre, igienizare și service la unități deja montate.</p></div>
 </div>
 </div></section>
 
 <section><div class="wrap">
-<div class="sec-head"><h2>Proiecte</h2><p>Lucrări executate și în curs de execuție.</p></div>
+<div class="sec-head"><div><span class="eyebrow">Proiecte</span><h2>Lucrări recente</h2></div><p>Lucrări executate și în curs de execuție.</p></div>
 <div class="proj-grid">
-${projects.map((p) => `<a class="proj" href="/proiecte/"><div class="vis">${projVisual(p.slug)}</div><span class="tag">${p.status}</span><h3>${p.name}</h3><p>${p.desc}</p></a>`).join('\n')}
+${projects.map((p) => `<a class="proj reveal" href="/proiecte/"><div class="vis">${projVisual(p.slug)}</div><span class="tag">${p.status}</span><h3>${p.name}</h3><p>${p.desc}</p></a>`).join('\n')}
+</div>
+<p style="margin-top:32px"><a class="btn ghost" href="/proiecte/">Toate proiectele ${I.arrow}</a></p>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Instrumente</span><h2>Estimează sau diagnostichează rapid</h2></div><p>Două unelte gratuite, fără cont. Rezultatele sunt orientative.</p></div>
+<div class="tools">
+<a class="tool reveal" href="/calculator-hvac/"><span class="tool-ic">${I.calc}</span><h3>Calculator capacitate de răcire</h3><p>Introduci suprafața, tipul de spațiu și condițiile. Primești o estimare în kW și BTU/h.</p><span class="go">Calculează ${I.arrow}</span></a>
+<a class="tool reveal" href="/diagnostic-hvac/"><span class="tool-ic">${I.diag}</span><h3>Diagnostic rapid</h3><p>Patru întrebări despre echipament. Primești cauzele frecvente și ce poți verifica în siguranță.</p><span class="go">Începe diagnosticul ${I.arrow}</span></a>
 </div>
 </div></section>
 ${ctaBand()}`,
@@ -411,9 +440,7 @@ layout({
   body: `
 <div class="page-head"><div class="wrap">${crumbs([['/', 'Acasă'], [null, 'Servicii']])}
 <h1>Servicii HVAC</h1><p class="lead">De la montaj și punere în funcțiune până la mentenanță. Lucrăm cu material și manoperă sau doar cu manoperă.</p></div></div>
-<section><div class="wrap"><ul class="svc">
-${services.map((s) => `<li><a href="/servicii/${s.slug}/"><h3>${s.name}</h3><p>${s.short}</p><span class="go">Detalii</span></a></li>`).join('\n')}
-</ul></div></section>
+<section><div class="wrap">${svcCards()}</div></section>
 ${ctaBand()}`,
 });
 
