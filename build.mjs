@@ -203,8 +203,22 @@ const projects = [
     slug: 'cresa-vetis',
     name: 'Creșa Vetiș, Satu Mare',
     status: 'În execuție din septembrie 2026',
-    desc: 'Montaj tubulatură de ventilație și trasee frigorifice pentru sistemul VRF.',
+    desc: 'Montaj tubulatură de ventilație și sistem VRF: trasee frigorifice din țeavă de cupru, îmbinate prin brazare, cu probe de presiune și vid înainte de punerea în funcțiune.',
     tags: ['Ventilație', 'VRF'],
+  },
+  {
+    slug: 'cresa-solovastru',
+    name: 'Creșa Solovăstru, Mureș',
+    status: 'Montaj tubulatură',
+    desc: 'Montaj tubulatură de ventilație: trasee, suporți, racorduri și izolații.',
+    tags: ['Ventilație'],
+  },
+  {
+    slug: 'sala-sport-carastelec',
+    name: 'Sala de sport Cărăstelec, Sălaj',
+    status: 'Montaj tubulatură',
+    desc: 'Montaj tubulatură de ventilație: trasee, suporți, racorduri și izolații.',
+    tags: ['Ventilație'],
   },
   {
     slug: 'sala-sport-rooftop',
@@ -415,7 +429,7 @@ ${svcCards()}
 <section><div class="wrap">
 <div class="sec-head"><div><span class="eyebrow">Proiecte</span><h2>Lucrări recente</h2></div><p>Lucrări executate și în curs de execuție.</p></div>
 <div class="proj-grid">
-${projects.map((p) => `<a class="proj reveal" href="/proiecte/"><div class="vis">${projVisual(p.slug)}</div><span class="tag">${p.status}</span><h3>${p.name}</h3><p>${p.desc}</p></a>`).join('\n')}
+${projects.filter((p) => !["cresa-solovastru", "sala-sport-carastelec"].includes(p.slug)).map((p) => `<a class="proj reveal" href="/proiecte/"><div class="vis">${projVisual(p.slug)}</div><span class="tag">${p.status}</span><h3>${p.name}</h3><p>${p.desc}</p></a>`).join('\n')}
 </div>
 <p style="margin-top:32px"><a class="btn ghost" href="/proiecte/">Toate proiectele ${I.arrow}</a></p>
 </div></section>
