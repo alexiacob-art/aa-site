@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculator HVAC: estimare capacitate de răcire | A&amp;A Industrial Systems</title>
+<meta name="description" content="Estimează orientativ capacitatea de răcire necesară pentru un spațiu (kW și BTU/h). Rezultat orientativ, nu înlocuiește calculul de sarcină termică.">
+<link rel="canonical" href="https://aaindustrialsystems.ro/calculator-hvac/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0A1628">
+<meta property="og:type" content="website"><meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="A&amp;A Industrial Systems">
+<meta property="og:title" content="Calculator HVAC: estimare capacitate de răcire | A&amp;A Industrial Systems"><meta property="og:description" content="Estimează orientativ capacitatea de răcire necesară pentru un spațiu (kW și BTU/h). Rezultat orientativ, nu înlocuiește calculul de sarcină termică.">
+<meta property="og:url" content="https://aaindustrialsystems.ro/calculator-hvac/"><meta property="og:image" content="https://aaindustrialsystems.ro/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HVACBusiness","@id":"https://aaindustrialsystems.ro/#organizatie","name":"A&A Industrial Systems","legalName":"A&A Industrial Systems S.R.L.","url":"https://aaindustrialsystems.ro","logo":"https://aaindustrialsystems.ro/assets/logo.png","image":"https://aaindustrialsystems.ro/assets/og.png","telephone":"+40754531194","email":"andrei.horhogea@aaindustrialsystems.ro","taxID":"51659678","description":"Instalare, punere în funcțiune și mentenanță pentru sisteme HVAC: VRF, ventilație și CTA, chillere, pompe de căldură și automatizări.","address":{"@type":"PostalAddress","streetAddress":"Str. Răzoare nr. 206C","addressLocality":"Florești","addressRegion":"Cluj","addressCountry":"RO"},"areaServed":[{"@type":"AdministrativeArea","name":"Cluj"},{"@type":"AdministrativeArea","name":"Transilvania"}],"knowsAbout":["VRF","Centrale de tratare a aerului","Ventilație","Chillere","Pompe de căldură","Automatizări BMS","Mentenanță HVAC"]}</script>
+</head>
+<body>
+<a class="skip" href="#continut">Sari la conținut</a>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="/" aria-label="A&amp;A Industrial Systems, pagina principală"><svg class="" viewBox="-2 -2 360 336" role="img" aria-label="A&amp;A Industrial Systems" xmlns="http://www.w3.org/2000/svg">
+<defs><mask id="m18" maskUnits="userSpaceOnUse" x="-40" y="-40" width="440" height="420"><rect x="-40" y="-40" width="440" height="420" fill="#fff"/><path d="M18 120 L178 314 L338 120" fill="none" stroke="#000" stroke-width="62" stroke-linecap="round" stroke-linejoin="round"/></mask></defs>
+<path class="a" mask="url(#m18)" d="M18 212 L178 17 L338 212" stroke="#0A1628" fill="none" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="b" d="M18 120 L178 314 L338 120" stroke="#3BA7E0" fill="none" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text"><b>A&amp;A</b><span>Industrial Systems</span></span></a>
+<button class="menu-btn" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><span></span></button>
+<nav class="nav" id="nav" aria-label="Principal">
+<a href="/servicii/" aria-current="page">Servicii</a>
+<a href="/proiecte/">Proiecte</a>
+<a href="/despre-noi/">Despre noi</a>
+<a href="/contact/">Contact</a>
+<a class="btn" href="/contact/">Cere ofertă</a>
+</nav>
+</div></header>
+<main id="continut">
+
+<div class="page-head"><div class="wrap"><nav class="crumbs" aria-label="Navigare"><a href="/">Acasă</a> / <span>Calculator HVAC</span></nav>
+<h1>Calculator capacitate de răcire</h1><p class="lead">Estimare rapidă pentru un spațiu. Rezultatul este orientativ și nu înlocuiește calculul de sarcină termică făcut de un proiectant.</p></div></div>
+<section><div class="wrap two">
+<form id="calc" class="calc" novalidate>
+<label>Suprafață (m²)<input name="mp" type="number" min="5" max="20000" step="1" inputmode="decimal" required placeholder="ex. 45"></label>
+<label>Înălțime (m)<input name="h" type="number" min="2" max="15" step="0.1" value="2.7"></label>
+<label>Tip spațiu<select name="tip"><option value="95">Rezidențial</option><option value="105">Birou</option><option value="120">Comercial</option><option value="150">HoReCa</option><option value="130">Industrial / tehnic</option></select></label>
+<label>Izolație<select name="iz"><option value="0.9">Bună</option><option value="1" selected>Medie</option><option value="1.2">Slabă</option></select></label>
+<label>Expunere solară<select name="sol"><option value="0.95">Redusă</option><option value="1" selected>Normală</option><option value="1.15">Mare</option></select></label>
+<label>Număr persoane<input name="pers" type="number" min="0" max="2000" step="1" value="0"></label>
+<label>Echipamente electrice mari<select name="ech"><option value="0">Nu</option><option value="1500">Da</option></select></label>
+<div class="actions"><button class="btn" type="submit">Calculează</button></div>
+</form>
+<div><div class="note" id="calc-out" aria-live="polite"><h3>Rezultat</h3><p style="color:var(--muted);margin:0">Completează suprafața și apasă „Calculează”.</p></div>
+<p style="margin-top:18px;color:var(--muted)">Estimarea pornește de la valori medii pe m² și le corectează după izolație, expunere, persoane și echipamente. Pentru sisteme VRF, CTA sau chillere dimensionarea se face pe baza planșelor.</p></div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+<div><h2>Vrei dimensionare corectă?</h2><p>Trimite planșele sau datele spațiului și revenim cu o ofertă.</p></div>
+<div class="actions"><a class="btn light" href="/contact/">Cere ofertă</a><a class="btn outline-light" href="tel:+40754531194">+40 754 531 194</a></div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap">
+<div class="fgrid">
+<div><a class="brand" href="/" aria-label="A&amp;A Industrial Systems, pagina principală"><svg class="" viewBox="-2 -2 360 336" role="img" aria-label="A&amp;A Industrial Systems" xmlns="http://www.w3.org/2000/svg">
+<defs><mask id="m19" maskUnits="userSpaceOnUse" x="-40" y="-40" width="440" height="420"><rect x="-40" y="-40" width="440" height="420" fill="#fff"/><path d="M18 120 L178 314 L338 120" fill="none" stroke="#000" stroke-width="62" stroke-linecap="round" stroke-linejoin="round"/></mask></defs>
+<path class="a" mask="url(#m19)" d="M18 212 L178 17 L338 212" stroke="#fff" fill="none" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="b" d="M18 120 L178 314 L338 120" stroke="#3BA7E0" fill="none" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text"><b>A&amp;A</b><span>Industrial Systems</span></span></a><p>Instalații HVAC pentru clădiri publice și industriale. Punct de lucru în Florești, jud. Cluj.</p></div>
+<div><h3>Servicii</h3><ul><li><a href="/servicii/vrf-climatizare/">Sisteme VRF și climatizare</a></li><li><a href="/servicii/ventilatie-cta/">Ventilație și centrale de tratare a aerului</a></li><li><a href="/servicii/pompe-de-caldura-chillere/">Pompe de căldură și chillere</a></li><li><a href="/servicii/automatizari-bms/">Automatizări și BMS</a></li><li><a href="/servicii/service-mentenanta/">Service și mentenanță</a></li></ul></div>
+<div><h3>Companie</h3><ul><li><a href="/proiecte/">Proiecte</a></li><li><a href="/calculator-hvac/">Calculator HVAC</a></li><li><a href="/despre-noi/">Despre noi</a></li><li><a href="/contact/">Contact</a></li><li><a href="/politica-confidentialitate/">Politica de confidențialitate</a></li></ul></div>
+<div><h3>Contact</h3><ul><li><a href="tel:+40754531194">+40 754 531 194</a></li><li><a href="mailto:andrei.horhogea@aaindustrialsystems.ro">andrei.horhogea@aaindustrialsystems.ro</a></li><li>Str. Răzoare nr. 206C, Florești, jud. Cluj</li></ul></div>
+</div>
+<div class="legalrow"><span>© 2026 A&amp;A Industrial Systems S.R.L.</span><span>CUI 51659678, Reg. Com. J2025028230008. Sediu social: Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava.</span></div>
+</div></footer>
+<script src="/assets/main.js" defer></script>
+</body></html>
