@@ -1,0 +1,23 @@
+# A&A Industrial Systems
+
+> Instalații HVAC pentru clădiri publice și industriale: VRF, ventilație și CTA, chillere, pompe de căldură, automatizări și mentenanță. Florești, Cluj. Lucrăm în Transilvania.
+
+## Servicii
+- [Sisteme VRF și climatizare](https://aaindustrialsystems.ro/servicii/vrf-climatizare/): Montaj și punere în funcțiune pentru clădiri publice, birouri și spații comerciale.
+- [Ventilație și centrale de tratare a aerului](https://aaindustrialsystems.ro/servicii/ventilatie-cta/): Centrale CTA, tubulatură și accesorii, cu reglarea debitelor și predare.
+- [Pompe de căldură și chillere](https://aaindustrialsystems.ro/servicii/pompe-de-caldura-chillere/): Montaj, racorduri hidraulice și punere în funcțiune pentru încălzire și răcire centralizată.
+- [Automatizări și BMS](https://aaindustrialsystems.ro/servicii/automatizari-bms/): Automatizarea CTA, VRF, chillere și integrarea într-un sistem de monitorizare.
+- [Service și mentenanță](https://aaindustrialsystems.ro/servicii/service-mentenanta/): Contracte de mentenanță pentru split, VRF, CTA, chillere și pompe de căldură.
+
+## Blog
+- [Cât costă montajul unui sistem VRF într-o clădire publică](https://aaindustrialsystems.ro/blog/cat-costa-montajul-unui-sistem-vrf/): De ce nu există un preț unic pe metru pătrat pentru VRF, ce intră în ofertă și cum compari două oferte corect: material, manoperă, probe și punere în funcțiune.
+- [Ce include punerea în funcțiune a unei centrale de tratare a aerului (CTA)](https://aaindustrialsystems.ro/blog/punerea-in-functiune-a-unei-cta/): Pornirea unei CTA nu înseamnă punere în funcțiune. Lista verificărilor, măsurătorilor și a documentelor pe care ar trebui să le primești la predare.
+- [Mentenanța CTA la școli, creșe și săli de sport: ce se verifică și de ce](https://aaindustrialsystems.ro/blog/mentenanta-cta-scoli-cresa-sali-de-sport/): Ce se întâmplă cu o centrală de tratare a aerului fără mentenanță, ce lucrări se fac periodic și cum se stabilește frecvența pentru o clădire publică.
+- [VRF sau chiller: cum alegi sistemul potrivit pentru o clădire](https://aaindustrialsystems.ro/blog/vrf-sau-chiller-cum-alegi/): Diferența dintre VRF și chiller, criteriile de alegere pentru clădiri publice și comerciale și întrebările de pus proiectantului înainte de decizie.
+- [Ofertă doar cu manoperă sau cu material și manoperă: ce alegi la o lucrare de HVAC](https://aaindustrialsystems.ro/blog/manopera-sau-material-si-manopera/): Diferențele dintre cele două tipuri de ofertă, avantajele și riscurile fiecăreia și lista de verificat înainte să semnezi un contract de montaj HVAC.
+- [Greșeli frecvente la montajul tubulaturii de ventilație](https://aaindustrialsystems.ro/blog/greseli-frecvente-la-montajul-tubulaturii/): Cele mai des întâlnite probleme la tubulatura de ventilație pe șantier: etanșare, suporți, izolare, acces la clapete și coordonare. Cum le eviți.
+
+## Contact
+- Telefon: +40 754 531 194
+- Email: andrei.horhogea@aaindustrialsystems.ro
+- Pagina de contact: https://aaindustrialsystems.ro/contact/

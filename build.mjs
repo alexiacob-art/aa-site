@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { articles } from './content/blog.mjs';
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const DIST = path.join(ROOT, 'dist');
@@ -244,6 +245,7 @@ const projects = [
 const nav = [
   ['/servicii/', 'Servicii'],
   ['/proiecte/', 'Proiecte'],
+  ['/blog/', 'Blog'],
   ['/despre-noi/', 'Despre noi'],
   ['/contact/', 'Contact'],
 ];
@@ -313,7 +315,7 @@ ${body}
 <div class="fgrid">
 <div>${brand(true)}<p>Instalații HVAC pentru clădiri publice și industriale. Punct de lucru în Florești, jud. Cluj.</p></div>
 <div><h3>Servicii</h3><ul>${services.map((s) => `<li><a href="/servicii/${s.slug}/">${s.name}</a></li>`).join('')}</ul></div>
-<div><h3>Companie</h3><ul><li><a href="/proiecte/">Proiecte</a></li><li><a href="/calculator-hvac/">Calculator HVAC</a></li><li><a href="/diagnostic-hvac/">Diagnostic rapid</a></li><li><a href="/despre-noi/">Despre noi</a></li><li><a href="/contact/">Contact</a></li><li><a href="/politica-confidentialitate/">Politica de confidențialitate</a></li></ul></div>
+<div><h3>Companie</h3><ul><li><a href="/proiecte/">Proiecte</a></li><li><a href="/blog/">Blog</a></li><li><a href="/calculator-hvac/">Calculator HVAC</a></li><li><a href="/diagnostic-hvac/">Diagnostic rapid</a></li><li><a href="/despre-noi/">Despre noi</a></li><li><a href="/contact/">Contact</a></li><li><a href="/politica-confidentialitate/">Politica de confidențialitate</a></li></ul></div>
 <div><h3>Contact</h3><ul><li><a href="tel:${TEL_HREF}">${TEL}</a></li><li><a href="mailto:${MAIL}">${MAIL}</a></li><li>Str. Răzoare nr. 206C, Florești, jud. Cluj</li></ul></div>
 </div>
 <div class="legalrow"><span>© 2026 A&amp;A Industrial Systems S.R.L.</span><span>CUI RO 51659678, Reg. Com. J2025028230008. Sediu social: Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava.</span></div>
@@ -377,6 +379,9 @@ const svcImg = {
   'service-mentenanta': 'lg-unitate-exterioara-pif',
 };
 const svcCards = () => `<div class="svc-grid">${services.map((s, i) => `<a class="svc-card reveal" href="/servicii/${s.slug}/"><div class="svc-img"><img src="/assets/img/${svcImg[s.slug]}.jpg" alt="" loading="lazy"><span class="svc-n">0${i + 1}</span></div><div class="svc-body"><h3>${s.name}</h3><p>${s.short}</p><span class="go">Detalii ${I.arrow}</span></div></a>`).join('')}</div>`;
+
+const fmtDate = (d) => new Date(d + 'T12:00:00').toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' });
+const articleCard = (a) => `<a class="post reveal" href="/blog/${a.slug}/"><div class="post-img"><img src="/assets/img/${a.img}.jpg" alt="" loading="lazy"></div><div class="post-body"><span class="post-meta">${fmtDate(a.date)} · ${a.min} min citire</span><h3>${esc(a.title)}</h3><p>${esc(a.desc)}</p><span class="go">Citește ${I.arrow}</span></div></a>`;
 
 // ---------- pagini ----------
 // Acasă
@@ -444,6 +449,12 @@ ${projects.filter((p) => !["cresa-solovastru", "sala-sport-carastelec"].includes
 <a class="tool reveal" href="/calculator-hvac/"><span class="tool-ic">${I.calc}</span><h3>Calculator capacitate de răcire</h3><p>Introduci suprafața, tipul de spațiu și condițiile. Primești o estimare în kW și BTU/h.</p><span class="go">Calculează ${I.arrow}</span></a>
 <a class="tool reveal" href="/diagnostic-hvac/"><span class="tool-ic">${I.diag}</span><h3>Diagnostic rapid</h3><p>Patru întrebări despre echipament. Primești cauzele frecvente și ce poți verifica în siguranță.</p><span class="go">Începe diagnosticul ${I.arrow}</span></a>
 </div>
+</div></section>
+
+<section><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Blog</span><h2>Ghiduri din șantier</h2></div><p>Ce costă, ce se verifică și cum eviți problemele la instalațiile HVAC.</p></div>
+<div class="post-grid">${articles.slice(0, 3).map(articleCard).join('\n')}</div>
+<p style="margin-top:32px"><a class="btn ghost" href="/blog/">Toate articolele ${I.arrow}</a></p>
 </div></section>
 ${ctaBand()}`,
 });
@@ -639,14 +650,61 @@ layout({
 });
 
 // ---------- scriere ----------
+
+// ---------- blog ----------
+layout({
+  url: '/blog/',
+  title: 'Blog HVAC: ghiduri practice despre VRF, CTA, chillere și mentenanță',
+  desc: 'Ghiduri practice scrise de echipa A&A Industrial Systems: costuri VRF, punerea în funcțiune a CTA, mentenanță, alegerea sistemului și greșeli frecvente de montaj.',
+  current: '/blog/',
+  ld: [
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Acasă', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Blog', item: SITE + '/blog/' }] },
+    { '@context': 'https://schema.org', '@type': 'Blog', name: 'Blog A&A Industrial Systems', url: SITE + '/blog/', publisher: { '@id': `${SITE}/#organizatie` }, blogPost: articles.map((a) => ({ '@type': 'BlogPosting', headline: a.title, url: `${SITE}/blog/${a.slug}/`, datePublished: a.date })) },
+  ],
+  body: `
+<div class="page-head"><div class="wrap">${crumbs([['/', 'Acasă'], [null, 'Blog']])}
+<h1>Blog HVAC</h1><p class="lead">Ghiduri practice din șantier: ce costă, ce se verifică și cum eviți problemele la instalații VRF, CTA și chillere.</p></div></div>
+<section><div class="wrap"><div class="post-grid">${articles.map(articleCard).join('\n')}</div></div></section>
+${ctaBand()}`,
+});
+
+for (const a of articles) {
+  const svc = services.find((s) => s.slug === a.service);
+  const others = articles.filter((x) => x.slug !== a.slug).slice(0, 3);
+  const url = `/blog/${a.slug}/`;
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: a.title, description: a.desc, image: `${SITE}/assets/img/${a.img}.jpg`, datePublished: a.date, dateModified: a.date, inLanguage: 'ro-RO', mainEntityOfPage: SITE + url, author: { '@id': `${SITE}/#organizatie` }, publisher: { '@id': `${SITE}/#organizatie` } },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: a.faq.map(([q, an]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: an } })) },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Acasă', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Blog', item: SITE + '/blog/' }, { '@type': 'ListItem', position: 3, name: a.title, item: SITE + url }] },
+  ];
+  layout({
+    url, title: a.title, desc: a.desc, current: '/blog/', ld,
+    body: `
+<div class="page-head"><div class="wrap">${crumbs([['/', 'Acasă'], ['/blog/', 'Blog'], [null, 'Articol']])}
+<span class="eyebrow">${fmtDate(a.date)} · ${a.min} min citire</span>
+<h1 class="art-h1">${esc(a.title)}</h1></div></div>
+<article class="art"><div class="wrap art-wrap">
+<img class="art-img" src="/assets/img/${a.img}.jpg" alt="${esc(a.imgAlt)}" fetchpriority="high">
+<div class="answer"><b>Pe scurt</b><p>${esc(a.answer)}</p></div>
+<div class="prose">${a.body}</div>
+<h2>Întrebări frecvente</h2>
+<div class="faq">${a.faq.map(([q, an]) => `<details><summary>${esc(q)}</summary><p>${esc(an)}</p></details>`).join('')}</div>
+<div class="art-cta"><div><h3>Ai o lucrare în plan?</h3><p>Trimite planșele sau caietul de sarcini și revenim cu o ofertă detaliată.</p></div><div class="actions"><a class="btn accent" href="/contact/">Cere ofertă</a><a class="btn outline-light" href="/servicii/${svc.slug}/">${svc.name}</a></div></div>
+<p class="art-note">Articolul are rol informativ. Costurile, duratele și soluțiile se stabilesc pe fiecare proiect. Publicat de echipa A&amp;A Industrial Systems.</p>
+</div></article>
+<section class="alt"><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Mai multe</span><h2>Alte articole</h2></div><p></p></div><div class="post-grid">${others.map(articleCard).join('\n')}</div></div></section>`,
+  });
+}
+
 for (const p of pages) {
   const out = p.url.endsWith('.html') ? path.join(DIST, p.url) : path.join(DIST, p.url, 'index.html');
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, p.html);
 }
 
-const today = '2026-10-30';
+const today =  '2026-10-30';
 fs.writeFileSync(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter((p) => !p.noindex).map((p) => `<url><loc>${SITE}${p.url}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+fs.writeFileSync(path.join(DIST, 'llms.txt'), `# A&A Industrial Systems\n\n> Instalații HVAC pentru clădiri publice și industriale: VRF, ventilație și CTA, chillere, pompe de căldură, automatizări și mentenanță. Florești, Cluj. Lucrăm în Transilvania.\n\n## Servicii\n${services.map((s) => `- [${s.name}](${SITE}/servicii/${s.slug}/): ${s.short}`).join('\n')}\n\n## Blog\n${articles.map((a) => `- [${a.title}](${SITE}/blog/${a.slug}/): ${a.desc}`).join('\n')}\n\n## Contact\n- Telefon: ${TEL}\n- Email: ${MAIL}\n- Pagina de contact: ${SITE}/contact/\n`);
 fs.writeFileSync(path.join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(DIST, 'favicon.svg'), mark({ top: '#0A1628', bottom: '#3BA7E0' }).replace('role="img" aria-label="A&amp;A Industrial Systems" ', ''));
 fs.writeFileSync(path.join(DIST, '_headers'), `/*
