@@ -16,12 +16,14 @@ fs.mkdirSync(path.join(DIST, 'assets/fonts'), { recursive: true });
 // ---------- assets ----------
 const fp = (p) => path.join(ROOT, 'node_modules', p);
 const fonts = {
-  'bricolage-latin.woff2': '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2',
-  'bricolage-latin-ext.woff2': '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-ext-wght-normal.woff2',
-  'plex-400-latin.woff2': '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2',
-  'plex-400-latin-ext.woff2': '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-400-normal.woff2',
-  'plex-500-latin.woff2': '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2',
-  'plex-500-latin-ext.woff2': '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-500-normal.woff2',
+  'montserrat-latin.woff2': '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2',
+  'montserrat-latin-ext.woff2': '@fontsource-variable/montserrat/files/montserrat-latin-ext-wght-normal.woff2',
+  'dm-400-latin.woff2': '@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2',
+  'dm-400-latin-ext.woff2': '@fontsource/dm-sans/files/dm-sans-latin-ext-400-normal.woff2',
+  'dm-500-latin.woff2': '@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2',
+  'dm-500-latin-ext.woff2': '@fontsource/dm-sans/files/dm-sans-latin-ext-500-normal.woff2',
+  'dm-700-latin.woff2': '@fontsource/dm-sans/files/dm-sans-latin-700-normal.woff2',
+  'dm-700-latin-ext.woff2': '@fontsource/dm-sans/files/dm-sans-latin-ext-700-normal.woff2',
 };
 for (const [out, src] of Object.entries(fonts)) fs.copyFileSync(fp(src), path.join(DIST, 'assets/fonts', out));
 fs.copyFileSync(path.join(ROOT, 'src/styles.css'), path.join(DIST, 'assets/styles.css'));
@@ -289,8 +291,8 @@ ${noindex ? '<meta name="robots" content="noindex">' : '<meta name="robots" cont
 <meta property="og:url" content="${canon}"><meta property="og:image" content="${SITE}/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/assets/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/plex-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/dm-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/styles.css?v=${V.css}">
 ${ldAll}
 </head>
@@ -664,6 +666,6 @@ fs.writeFileSync(path.join(DIST, '_headers'), `/*
   Cache-Control: public, max-age=0, must-revalidate
 `);
 // versiune albă a logo-ului pentru OG / social
-fs.writeFileSync(path.join(ROOT, 'og-source.html'), `<!doctype html><meta charset=utf-8><style>@font-face{font-family:B;src:url(dist/assets/fonts/bricolage-latin.woff2)}body{margin:0;width:1200px;height:630px;background:#0A1628;display:flex;align-items:center;gap:56px;padding:0 96px;box-sizing:border-box;font-family:B}svg{width:300px;flex:none}h1{color:#fff;font-size:76px;line-height:1.02;margin:0;font-weight:800;letter-spacing:-2px}p{color:#3BA7E0;font:600 30px B;margin:22px 0 0}</style>${mark({ top: '#fff' })}<div><h1>A&amp;A Industrial Systems</h1><p>Instalații HVAC, VRF, CTA, mentenanță</p></div>`);
+fs.writeFileSync(path.join(ROOT, 'og-source.html'), `<!doctype html><meta charset=utf-8><style>@font-face{font-family:B;src:url(dist/assets/fonts/montserrat-latin.woff2)}body{margin:0;width:1200px;height:630px;background:#0A1628;display:flex;align-items:center;gap:56px;padding:0 96px;box-sizing:border-box;font-family:B}svg{width:300px;flex:none}h1{color:#fff;font-size:76px;line-height:1.02;margin:0;font-weight:800;letter-spacing:-2px}p{color:#3BA7E0;font:600 30px B;margin:22px 0 0}</style>${mark({ top: '#fff' })}<div><h1>A&amp;A Industrial Systems</h1><p>Instalații HVAC, VRF, CTA, mentenanță</p></div>`);
 fs.writeFileSync(path.join(ROOT, 'logo-source.html'), `<!doctype html><meta charset=utf-8><body style="margin:0;background:transparent;width:512px;height:512px;display:grid;place-items:center"><div style="width:440px">${mark({ top: '#0A1628' })}</div>`);
 console.log(`OK: ${pages.length} pagini în dist/`);
