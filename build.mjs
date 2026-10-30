@@ -240,6 +240,7 @@ const ldBusiness = {
   telephone: TEL_HREF,
   email: MAIL,
   taxID: '51659678',
+  vatID: 'RO51659678',
   description: 'Instalare, punere în funcțiune și mentenanță pentru sisteme HVAC: VRF, ventilație și CTA, chillere, pompe de căldură și automatizări.',
   address: { '@type': 'PostalAddress', streetAddress: 'Str. Răzoare nr. 206C', addressLocality: 'Florești', addressRegion: 'Cluj', addressCountry: 'RO' },
   areaServed: [{ '@type': 'AdministrativeArea', name: 'Cluj' }, { '@type': 'AdministrativeArea', name: 'Transilvania' }],
@@ -295,7 +296,7 @@ ${body}
 <div><h3>Companie</h3><ul><li><a href="/proiecte/">Proiecte</a></li><li><a href="/calculator-hvac/">Calculator HVAC</a></li><li><a href="/despre-noi/">Despre noi</a></li><li><a href="/contact/">Contact</a></li><li><a href="/politica-confidentialitate/">Politica de confidențialitate</a></li></ul></div>
 <div><h3>Contact</h3><ul><li><a href="tel:${TEL_HREF}">${TEL}</a></li><li><a href="mailto:${MAIL}">${MAIL}</a></li><li>Str. Răzoare nr. 206C, Florești, jud. Cluj</li></ul></div>
 </div>
-<div class="legalrow"><span>© 2026 A&amp;A Industrial Systems S.R.L.</span><span>CUI 51659678, Reg. Com. J2025028230008. Sediu social: Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava.</span></div>
+<div class="legalrow"><span>© 2026 A&amp;A Industrial Systems S.R.L.</span><span>CUI RO 51659678, Reg. Com. J2025028230008. Sediu social: Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava.</span></div>
 </div></footer>
 <script src="/assets/main.js" defer></script>
 </body></html>`;
@@ -505,7 +506,7 @@ layout({
 <div><h2>Conducere</h2>
 <ul class="list"><li><b>Andrei Horhogea</b>, administrator. Execuție și partea tehnică.</li><li><b>Alexandru Iacob</b>, administrator. Oferte, contracte și relația cu clienții.</li></ul>
 <h2 style="margin-top:36px">Date firmă</h2>
-<ul class="list"><li>A&amp;A Industrial Systems S.R.L.</li><li>CUI 51659678, Reg. Com. J2025028230008</li><li>Punct de lucru: Str. Răzoare nr. 206C, Florești, jud. Cluj</li></ul></div>
+<ul class="list"><li>A&amp;A Industrial Systems S.R.L.</li><li>CUI RO 51659678, Reg. Com. J2025028230008</li><li>Punct de lucru: Str. Răzoare nr. 206C, Florești, jud. Cluj</li></ul></div>
 </div></section>
 ${ctaBand('Hai să discutăm lucrarea ta', 'Trimite-ne detaliile și revenim cu o ofertă.')}`,
 });
@@ -550,7 +551,7 @@ layout({
   body: `
 <div class="page-head"><div class="wrap">${crumbs([['/', 'Acasă'], [null, 'Politica de confidențialitate']])}<h1>Politica de confidențialitate</h1></div></div>
 <section class="legal"><div class="wrap measure">
-<h2>Operatorul datelor</h2><p>A&amp;A Industrial Systems S.R.L., CUI 51659678, Reg. Com. J2025028230008, sediu social în Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava. Contact: <a href="mailto:${MAIL}">${MAIL}</a>.</p>
+<h2>Operatorul datelor</h2><p>A&amp;A Industrial Systems S.R.L., CUI RO 51659678, Reg. Com. J2025028230008, sediu social în Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava. Contact: <a href="mailto:${MAIL}">${MAIL}</a>.</p>
 <h2>Ce date colectăm</h2><p>Doar datele pe care le completezi în formularul de contact: nume, telefon, email și mesaj.</p>
 <h2>De ce le folosim</h2><p>Pentru a răspunde cererii tale de ofertă sau de informații. Baza legală este interesul tău de a primi un răspuns și, după caz, demersurile precontractuale.</p>
 <h2>Cât le păstrăm</h2><p>Cât este necesar pentru a răspunde cererii și, dacă se încheie un contract, pe durata prevăzută de lege pentru documentele comerciale.</p>
