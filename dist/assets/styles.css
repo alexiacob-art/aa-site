@@ -232,3 +232,21 @@ figcaption{font-size:.9rem;color:var(--muted);margin-top:8px}
 .calc{display:grid;gap:16px;align-content:start}
 @media(max-width:980px){.gallery{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.gallery{grid-template-columns:1fr}.photo img{aspect-ratio:4/3}}
+
+.diag{max-width:720px;border:1px solid var(--line);border-radius:10px;padding:clamp(20px,3vw,34px);background:#fff}
+.diag-head{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.diag-count{font-size:.9rem;color:var(--muted);white-space:nowrap}
+.diag-track{flex:1;height:4px;background:var(--mist);border-radius:4px;overflow:hidden}
+.diag-bar{height:100%;background:var(--blue);width:25%;transition:width .25s}
+.diag-title{font-size:clamp(1.3rem,2.4vw,1.7rem);margin-bottom:18px}
+.diag-opts{display:grid;gap:10px}
+.diag-opt{font:500 1rem/1.35 var(--body);text-align:left;color:var(--navy);background:#fff;border:1.5px solid #B9C8D6;border-radius:8px;padding:14px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+.diag-opt:hover{border-color:var(--blue-ink);background:var(--mist)}
+.diag-opt:focus-visible{outline:3px solid rgba(59,167,224,.35);border-color:var(--blue-ink)}
+.diag-back{margin-top:18px}
+.diag-sum{margin:0 0 18px;color:var(--muted)}
+.diag-disc{margin:22px 0;font-size:.92rem;color:var(--muted)}
+.diag .actions{display:flex;flex-wrap:wrap;gap:10px}
+.note.warn{border-left-color:#C2410C;background:#FFF7ED;margin:0 0 20px}
+@media(prefers-reduced-motion:reduce){.diag-bar{transition:none}}
+.diag [hidden]{display:none!important}

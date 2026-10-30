@@ -25,6 +25,7 @@ const fonts = {
 for (const [out, src] of Object.entries(fonts)) fs.copyFileSync(fp(src), path.join(DIST, 'assets/fonts', out));
 fs.copyFileSync(path.join(ROOT, 'src/styles.css'), path.join(DIST, 'assets/styles.css'));
 fs.copyFileSync(path.join(ROOT, 'src/main.js'), path.join(DIST, 'assets/main.js'));
+fs.copyFileSync(path.join(ROOT, 'src/diag.js'), path.join(DIST, 'assets/diag.js'));
 for (const f of ['og.png', 'logo.png']) if (fs.existsSync(path.join(ROOT, 'src', f))) fs.copyFileSync(path.join(ROOT, 'src', f), path.join(DIST, 'assets', f));
 if (fs.existsSync(path.join(ROOT, 'src/img')))fs.cpSync(path.join(ROOT, 'src/img'), path.join(DIST, 'assets/img'), { recursive: true });
 
@@ -293,7 +294,7 @@ ${body}
 <div class="fgrid">
 <div>${brand(true)}<p>Instalații HVAC pentru clădiri publice și industriale. Punct de lucru în Florești, jud. Cluj.</p></div>
 <div><h3>Servicii</h3><ul>${services.map((s) => `<li><a href="/servicii/${s.slug}/">${s.name}</a></li>`).join('')}</ul></div>
-<div><h3>Companie</h3><ul><li><a href="/proiecte/">Proiecte</a></li><li><a href="/calculator-hvac/">Calculator HVAC</a></li><li><a href="/despre-noi/">Despre noi</a></li><li><a href="/contact/">Contact</a></li><li><a href="/politica-confidentialitate/">Politica de confidențialitate</a></li></ul></div>
+<div><h3>Companie</h3><ul><li><a href="/proiecte/">Proiecte</a></li><li><a href="/calculator-hvac/">Calculator HVAC</a></li><li><a href="/diagnostic-hvac/">Diagnostic rapid</a></li><li><a href="/despre-noi/">Despre noi</a></li><li><a href="/contact/">Contact</a></li><li><a href="/politica-confidentialitate/">Politica de confidențialitate</a></li></ul></div>
 <div><h3>Contact</h3><ul><li><a href="tel:${TEL_HREF}">${TEL}</a></li><li><a href="mailto:${MAIL}">${MAIL}</a></li><li>Str. Răzoare nr. 206C, Florești, jud. Cluj</li></ul></div>
 </div>
 <div class="legalrow"><span>© 2026 A&amp;A Industrial Systems S.R.L.</span><span>CUI RO 51659678, Reg. Com. J2025028230008. Sediu social: Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava.</span></div>
@@ -484,9 +485,31 @@ layout({
 <div class="actions"><button class="btn" type="submit">Calculează</button></div>
 </form>
 <div><div class="note" id="calc-out" aria-live="polite"><h3>Rezultat</h3><p style="color:var(--muted);margin:0">Completează suprafața și apasă „Calculează”.</p></div>
-<p style="margin-top:18px;color:var(--muted)">Estimarea pornește de la valori medii pe m² și le corectează după izolație, expunere, persoane și echipamente. Pentru sisteme VRF, CTA sau chillere dimensionarea se face pe baza planșelor.</p></div>
+<p style="margin-top:18px;color:var(--muted)">Estimarea pornește de la valori medii pe m² și le corectează după izolație, expunere, persoane și echipamente. Pentru sisteme VRF, CTA sau chillere dimensionarea se face pe baza planșelor.</p><p style="margin-top:12px;color:var(--muted)">Ai o problemă la un echipament? Încearcă <a href="/diagnostic-hvac/">diagnosticul rapid</a>.</p></div>
 </div></section>
 ${ctaBand('Vrei dimensionare corectă?', 'Trimite planșele sau datele spațiului și revenim cu o ofertă.')}`,
+});
+
+// Diagnostic
+layout({
+  url: '/diagnostic-hvac/',
+  title: 'Diagnostic rapid HVAC: ce poate fi problema | A&A Industrial Systems',
+  desc: 'Patru întrebări despre echipamentul tău (aer condiționat, VRF, chiller, CTA, centrală) și primești cauze frecvente și ce poți verifica în siguranță.',
+  current: '/servicii/',
+  body: `
+<div class="page-head"><div class="wrap">${crumbs([['/', 'Acasă'], [null, 'Diagnostic rapid']])}
+<h1>Diagnostic rapid</h1><p class="lead">Răspunde la patru întrebări și primești cauzele frecvente și ce poți verifica în siguranță. Evaluarea e orientativă.</p></div></div>
+<section><div class="wrap">
+<div class="diag" id="diag">
+<div class="diag-head"><span id="diag-count" class="diag-count" aria-live="polite">Pas 1 din 4</span><div class="diag-track" aria-hidden="true"><div id="diag-bar" class="diag-bar"></div></div></div>
+<h2 id="diag-title" class="diag-title">Ce tip de echipament ai?</h2>
+<div id="diag-body" aria-live="polite"><noscript><p>Diagnosticul are nevoie de JavaScript. Sună-ne la ${TEL} și te ajutăm direct.</p></noscript></div>
+<button type="button" id="diag-back" class="btn ghost diag-back" hidden>Înapoi</button>
+</div>
+<p style="margin-top:28px;color:var(--muted)">Ai nevoie de o estimare a capacității? Folosește <a href="/calculator-hvac/">calculatorul HVAC</a>.</p>
+</div></section>
+<script src="/assets/diag.js" defer></script>
+${ctaBand('Preferi să vorbești cu un tehnician?', 'Sună sau scrie-ne și programăm verificarea echipamentului.')}`,
 });
 
 // Despre noi
