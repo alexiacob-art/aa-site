@@ -333,7 +333,10 @@ const gallery = [
   ['tubulatura-tavi-cabluri', 'Coturi și racorduri, înainte de închiderea plafonului'],
   ['racorduri-ventilatie', 'Racorduri de ventilație pregătite pentru finisaje'],
   ['rooftop-ett', 'Unitate rooftop pe acoperiș'],
+  ['conducte-izolate-suporti', 'Conducte izolate pe suporți, lângă tubulatură'],
   ['tubulatura-coridor', 'Tubulatură și tăvi de cabluri pe coridor'],
+  ['lg-unitate-exterioara-pif', 'Unitate exterioară LG Multi V, deschisă pentru punere în funcțiune'],
+  ['atrea-duplex-multi', 'Unitate de ventilație cu recuperare ATREA DUPLEX Multi'],
 ];
 
 // ---------- pagini ----------
