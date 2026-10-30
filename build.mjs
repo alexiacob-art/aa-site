@@ -325,10 +325,10 @@ const svcPhotos = {
 const svcPhoto = (slug) => (svcPhotos[slug] ? `<section class="photo-sec"><div class="wrap"><figure class="photo"><img src="/assets/img/${svcPhotos[slug][0]}.jpg" alt="${svcPhotos[slug][1]}" loading="lazy"><figcaption>${svcPhotos[slug][1]}</figcaption></figure></div></section>` : '');
 
 const gallery = [
-  ['cta-ventas-acoperis-1', 'Centrale de tratare a aerului Ventas, montate pe acoperiș'],
+  ['cta-ventas-acoperis-1', 'Muzeul Mutra: CTA Ventas montate pe acoperiș'],
   ['chillere-hidros', 'Chillere și pompe de căldură, montaj exterior'],
   ['tubulatura-spiro-sala', 'Tubulatură spiro montată într-o sală'],
-  ['cta-ventas-acoperis-2', 'CTA cu racorduri de tubulatură și conducte izolate'],
+  ['tubulatura-cabluri-sala', 'Tubulatură și trasee de cabluri într-o sală'],
   ['tubulatura-spiro-perete', 'Tubulatură spiro montată sub planșeu'],
   ['tubulatura-tavi-cabluri', 'Coturi și racorduri, înainte de închiderea plafonului'],
   ['racorduri-ventilatie', 'Racorduri de ventilație pregătite pentru finisaje'],
