@@ -21,7 +21,7 @@ export const jobs = [
     type: 'Normă întreagă, 40 ore/săptămână',
     place: 'Șantiere în Transilvania, cu punct de lucru în Florești, jud. Cluj',
     date: '2026-11-02',
-    salary: { min: 4500, max: 5500 },
+    salary: { min: 5000, max: 6000 },
     summary: 'Montaj de tubulatură, unități VRF, centrale de tratare a aerului și trasee frigorifice pe șantiere publice și comerciale.',
     duties: [
       'Montezi tubulatură de ventilare, accesorii (plenumuri, coturi, reducții, clapete, grile, difuzoare) și suporți.',
@@ -75,7 +75,7 @@ export const jobs = [
     type: 'Normă întreagă, 40 ore/săptămână',
     place: 'Șantiere în Transilvania și birou în Florești, jud. Cluj',
     date: '2026-11-02',
-    salary: { min: 6000, max: 7000 },
+    salary: { min: 6500, max: 7500 },
     summary: 'Răspunzi tehnic de lucrările de HVAC: urmărești execuția după proiect, verifici cantitățile și ții legătura cu constructorul și beneficiarul.',
     duties: [
       'Urmărești execuția lucrărilor pe șantier conform proiectului și caietului de sarcini.',
