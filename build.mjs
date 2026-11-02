@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { articles } from './content/blog.mjs';
+import { jobs as allJobs } from './content/jobs.mjs';
+const jobs = allJobs.filter((j) => j.active !== false);
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const DIST = path.join(ROOT, 'dist');
@@ -247,6 +249,7 @@ const nav = [
   ['/proiecte/', 'Proiecte'],
   ['/blog/', 'Blog'],
   ['/despre-noi/', 'Despre noi'],
+  ['/cariere/', 'Cariere'],
   ['/contact/', 'Contact'],
 ];
 
@@ -315,7 +318,7 @@ ${body}
 <div class="fgrid">
 <div>${brand(true)}<p>Instalații HVAC pentru clădiri publice și industriale. Punct de lucru în Florești, jud. Cluj.</p></div>
 <div><h3>Servicii</h3><ul>${services.map((s) => `<li><a href="/servicii/${s.slug}/">${s.name}</a></li>`).join('')}</ul></div>
-<div><h3>Companie</h3><ul><li><a href="/proiecte/">Proiecte</a></li><li><a href="/blog/">Blog</a></li><li><a href="/calculator-hvac/">Calculator HVAC</a></li><li><a href="/diagnostic-hvac/">Diagnostic rapid</a></li><li><a href="/despre-noi/">Despre noi</a></li><li><a href="/contact/">Contact</a></li><li><a href="/politica-confidentialitate/">Politica de confidențialitate</a></li></ul></div>
+<div><h3>Companie</h3><ul><li><a href="/proiecte/">Proiecte</a></li><li><a href="/blog/">Blog</a></li><li><a href="/calculator-hvac/">Calculator HVAC</a></li><li><a href="/diagnostic-hvac/">Diagnostic rapid</a></li><li><a href="/despre-noi/">Despre noi</a></li><li><a href="/cariere/">Cariere</a></li><li><a href="/contact/">Contact</a></li><li><a href="/politica-confidentialitate/">Politica de confidențialitate</a></li></ul></div>
 <div><h3>Contact</h3><ul><li><a href="tel:${TEL_HREF}">${TEL}</a></li><li><a href="mailto:${MAIL}">${MAIL}</a></li><li>Str. Răzoare nr. 206C, Florești, jud. Cluj</li></ul></div>
 </div>
 <div class="legalrow"><span>© 2026 A&amp;A Industrial Systems S.R.L.</span><span>CUI RO 51659678, Reg. Com. J2025028230008. Sediu social: Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava.</span></div>
@@ -626,14 +629,15 @@ layout({
 layout({
   url: '/politica-confidentialitate/',
   title: 'Politica de confidențialitate',
-  desc: 'Cum folosim datele personale transmise prin formularul de contact al site-ului A&A Industrial Systems.',
+  desc: 'Cum folosim datele personale transmise prin formularele de contact și de candidatură ale site-ului A&A Industrial Systems.',
   body: `
 <div class="page-head"><div class="wrap">${crumbs([['/', 'Acasă'], [null, 'Politica de confidențialitate']])}<h1>Politica de confidențialitate</h1></div></div>
 <section class="legal"><div class="wrap measure">
 <h2>Operatorul datelor</h2><p>A&amp;A Industrial Systems S.R.L., CUI RO 51659678, Reg. Com. J2025028230008, sediu social în Str. Prefect Gavril Tudorașcu nr. 21, Bl. B6, Sc. A, Et. 3, Ap. 7, Suceava. Contact: <a href="mailto:${MAIL}">${MAIL}</a>.</p>
-<h2>Ce date colectăm</h2><p>Doar datele pe care le completezi în formularul de contact: nume, telefon, email și mesaj.</p>
+<h2>Ce date colectăm</h2><p>Doar datele pe care le completezi în formularele de pe site. La formularul de contact: nume, telefon, email și mesaj. La formularul de candidatură de pe pagina Cariere: nume, telefon, email, mesaj și CV-ul atașat, cu datele din el.</p>
 <h2>De ce le folosim</h2><p>Pentru a răspunde cererii tale de ofertă sau de informații. Baza legală este interesul tău de a primi un răspuns și, după caz, demersurile precontractuale.</p>
-<h2>Cât le păstrăm</h2><p>Cât este necesar pentru a răspunde cererii și, dacă se încheie un contract, pe durata prevăzută de lege pentru documentele comerciale.</p>
+<h2>Candidaturi</h2><p>CV-ul și datele de candidatură se folosesc doar pentru recrutare. Dacă nu ajungem la o angajare, le ștergem în cel mult 6 luni de la primire, cu excepția cazului în care ne ceri sau ești de acord să le păstrăm mai mult pentru posturi viitoare. Poți cere ștergerea oricând.</p>
+<h2>Cât le păstrăm</h2><p>Pentru cereri de ofertă, cât este necesar pentru a răspunde cererii și, dacă se încheie un contract, pe durata prevăzută de lege pentru documentele comerciale.</p>
 <h2>Cui le transmitem</h2><p>Mesajul este trimis pe email către echipa A&amp;A printr-un furnizor de transmitere a emailurilor. Nu vindem și nu transmitem datele în scopuri de marketing.</p>
 <h2>Cookie-uri</h2><p>Site-ul nu folosește cookie-uri de urmărire sau de publicitate.</p>
 <h2>Drepturile tale</h2><p>Ai dreptul de acces, rectificare, ștergere, restricționare, portabilitate și opoziție. Ne poți scrie la adresa de email de mai sus. Te poți adresa și Autorității Naționale de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP).</p>
@@ -650,6 +654,61 @@ layout({
 });
 
 // ---------- scriere ----------
+
+// ---------- cariere ----------
+const jobLd = (j) => ({
+  '@context': 'https://schema.org', '@type': 'JobPosting', title: j.title, description: `<p>${esc(j.summary)}</p><ul>${j.duties.map((d) => `<li>${esc(d)}</li>`).join('')}</ul><p>Cerințe:</p><ul>${j.requirements.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>`,
+  datePosted: j.date, employmentType: 'FULL_TIME', directApply: true,
+  hiringOrganization: { '@type': 'Organization', name: 'A&A Industrial Systems S.R.L.', sameAs: SITE, logo: `${SITE}/assets/logo.png` },
+  jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', streetAddress: 'Str. Răzoare nr. 206C', addressLocality: 'Florești', addressRegion: 'Cluj', addressCountry: 'RO' } },
+  occupationalCategory: '712606',
+});
+layout({
+  url: '/cariere/',
+  title: 'Cariere: locuri de muncă în HVAC în Cluj și Transilvania',
+  desc: 'Locuri de muncă la A&A Industrial Systems: instalator ventilare și condiționare aer. Trimite CV-ul direct de pe site.',
+  current: '/cariere/',
+  ld: [
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Acasă', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Cariere', item: SITE + '/cariere/' }] },
+    ...jobs.map(jobLd),
+  ],
+  body: `
+<div class="page-head"><div class="wrap">${crumbs([['/', 'Acasă'], [null, 'Cariere']])}
+<h1>Lucrează cu noi</h1><p class="lead">Construim instalații HVAC pe șantiere publice și comerciale. Dacă știi meserie și îți place să lucrezi curat, trimite-ne CV-ul.</p></div></div>
+<section><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Posturi deschise</span><h2>${jobs.length ? 'Căutăm colegi' : 'Momentan nu avem posturi'}</h2></div><p>${jobs.length ? 'Alege postul și completează formularul de mai jos. Poți aplica și spontan.' : 'Poți trimite CV-ul oricum. Îl păstrăm și te contactăm când apare un post potrivit.'}</p></div>
+<div class="jobs">
+${jobs.map((j) => `<article class="job reveal" id="${j.slug}">
+<div class="job-head"><div><span class="post-meta">${esc(j.type)}</span><h3>${esc(j.title)}</h3><p class="job-sub">${esc(j.place)}</p></div><a class="btn accent" href="#aplica" data-job="${esc(j.title)}">Aplică ${I.arrow}</a></div>
+<p>${esc(j.summary)}</p>
+<div class="job-cols">
+<div><h4>Ce vei face</h4><ul class="list">${j.duties.map((d) => `<li>${esc(d)}</li>`).join('')}</ul></div>
+<div><h4>Ce căutăm</h4><ul class="list">${j.requirements.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
+<h4 style="margin-top:28px">Ce oferim</h4><ul class="list">${j.offer.map((d) => `<li>${esc(d)}</li>`).join('')}</ul></div>
+</div></article>`).join('\n')}
+</div>
+</div></section>
+<section class="alt" id="aplica"><div class="wrap contact-grid">
+<form class="q" id="job-form" novalidate>
+<h2 style="font-size:1.6rem">Trimite CV-ul</h2>
+<label>Post<select name="post">${jobs.map((j) => `<option>${esc(j.title)}</option>`).join('')}<option>Aplicare spontană</option></select></label>
+<div class="f2"><label>Nume<input name="nume" autocomplete="name" required></label>
+<label>Telefon<input name="telefon" type="tel" autocomplete="tel" required></label></div>
+<label>Email<input name="email" type="email" autocomplete="email" required></label>
+<label>CV (PDF, DOC sau DOCX, maximum 5 MB)<input name="cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required></label>
+<label>Mesaj (opțional)<textarea name="mesaj" placeholder="Câțiva ani de experiență, ce ai lucrat, zona în care locuiești."></textarea></label>
+<input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label class="check"><input type="checkbox" name="gdpr" required><span>Sunt de acord ca datele și CV-ul trimise să fie folosite pentru recrutare. Detalii în <a href="/politica-confidentialitate/">politica de confidențialitate</a>.</span></label>
+<div id="job-msg" class="form-msg" role="status" tabindex="-1"></div>
+<div><button class="btn" type="submit">Trimite candidatura</button></div>
+</form>
+<aside class="info"><dl>
+<dt>Cum alegem</dt><dd>Citim fiecare CV și te sunăm dacă profilul se potrivește. Urmează o discuție despre experiență și lucrările pe care le-ai făcut.</dd>
+<dt>Întrebări</dt><dd><a href="tel:${TEL_HREF}">${TEL}</a><br><a href="mailto:${MAIL}">${MAIL}</a></dd>
+<dt>Date personale</dt><dd>CV-ul ajunge doar la echipa A&amp;A și îl folosim doar pentru recrutare.</dd>
+</dl></aside>
+</div></section>`,
+});
 
 // ---------- blog ----------
 layout({

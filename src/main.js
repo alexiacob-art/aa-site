@@ -81,3 +81,38 @@
   }, { threshold: 0.12 });
   els.forEach(function (el) { io.observe(el); });
 })();
+
+(function () {
+  var form = document.getElementById('job-form');
+  if (!form) return;
+  var msg = document.getElementById('job-msg');
+  var submit = form.querySelector('button[type=submit]');
+  var sel = form.querySelector('select[name=post]');
+  document.querySelectorAll('a[data-job]').forEach(function (a) {
+    a.addEventListener('click', function () { if (sel) sel.value = a.getAttribute('data-job'); });
+  });
+  function show(kind, text) { msg.className = 'form-msg ' + kind; msg.textContent = text; msg.focus(); }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var fd = new FormData(form);
+    if (fd.get('website')) return;
+    var cv = fd.get('cv');
+    if (!fd.get('nume') || !fd.get('telefon') || !fd.get('email')) return show('err', 'Completează numele, telefonul și emailul.');
+    if (!cv || !cv.size) return show('err', 'Atașează CV-ul (PDF, DOC sau DOCX).');
+    if (cv.size > 5 * 1024 * 1024) return show('err', 'CV-ul depășește 5 MB.');
+    if (!fd.get('gdpr')) return show('err', 'Bifează acordul pentru prelucrarea datelor.');
+    submit.disabled = true;
+    submit.textContent = 'Se trimite…';
+    fetch('/api/cariere', { method: 'POST', body: fd })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.j && res.j.error || 'eroare');
+        form.reset();
+        show('ok', 'Candidatura a fost trimisă. Mulțumim! Revenim dacă profilul se potrivește.');
+      })
+      .catch(function (err) {
+        show('err', (err && err.message && err.message !== 'eroare' ? err.message + ' ' : 'Candidatura nu a putut fi trimisă. ') + 'Poți trimite CV-ul direct la andrei.horhogea@aaindustrialsystems.ro.');
+      })
+      .then(function () { submit.disabled = false; submit.textContent = 'Trimite candidatura'; });
+  });
+})();
