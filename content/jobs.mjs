@@ -1,5 +1,17 @@
-// Locuri de muncă. Editează lista: un obiect = un anunț afișat pe /cariere/.
-// Ca să retragi un anunț, șterge-l din listă sau pune active: false.
+// Locuri de muncă afișate pe /cariere/. Un obiect = un anunț.
+// Ca să retragi un anunț: șterge-l sau pune active: false. Salariile sunt NET, lei/lună.
+export const SALARY_BASIS = 'net';
+export const DIURNA = 50; // lei/zi, la deplasări
+
+// Avantaje comune tuturor posturilor (apar la „Ce oferim”).
+export const common = [
+  `Diurnă de ${DIURNA} lei/zi la deplasări, plus cazare și transport asigurate.`,
+  'Contract individual de muncă cu forme legale.',
+  'Echipament individual de protecție, scule și aparatură furnizate de firmă.',
+  'Instruire de securitate și sănătate în muncă.',
+  'Lucrări pe clădiri publice: spitale, școli, creșe, săli de sport.',
+];
+
 export const jobs = [
   {
     slug: 'instalator-ventilare-conditionare-aer',
@@ -9,6 +21,7 @@ export const jobs = [
     type: 'Normă întreagă, 40 ore/săptămână',
     place: 'Șantiere în Transilvania, cu punct de lucru în Florești, jud. Cluj',
     date: '2026-11-02',
+    salary: { min: 4500, max: 5500 },
     summary: 'Montaj de tubulatură, unități VRF, centrale de tratare a aerului și trasee frigorifice pe șantiere publice și comerciale.',
     duties: [
       'Montezi tubulatură de ventilare, accesorii (plenumuri, coturi, reducții, clapete, grile, difuzoare) și suporți.',
@@ -26,12 +39,83 @@ export const jobs = [
       'Disponibilitate pentru deplasări. Permisul categoria B este un avantaj.',
       'Certificat pentru agenți frigorifici este un avantaj pentru lucrări de VRF.',
     ],
-    offer: [
-      'Lucrări pe clădiri publice: spitale, școli, creșe, săli de sport.',
-      'Echipament individual de protecție furnizat de firmă.',
-      'Instruire de securitate și sănătate în muncă.',
-      'Cazare și transport asigurate pentru deplasări.',
-      'Condițiile și salariul se discută la interviu.',
+    offer: [],
+  },
+  {
+    slug: 'sef-de-echipa-instalatii-hvac',
+    active: true,
+    title: 'Șef de echipă instalații HVAC',
+    type: 'Normă întreagă, 40 ore/săptămână',
+    place: 'Șantiere în Transilvania, cu punct de lucru în Florești, jud. Cluj',
+    date: '2026-11-02',
+    salary: { min: 6000, max: 7000 },
+    summary: 'Conduci o echipă de montaj pe șantier, de la trasare până la predarea lucrării, și răspunzi de calitate și de termene.',
+    duties: [
+      'Organizezi și coordonezi echipa de montaj și împarți sarcinile zilnic.',
+      'Citești planșele și caietul de sarcini și te asiguri că lucrarea se execută conform proiectului.',
+      'Verifici calitatea execuției și corectezi la timp abaterile.',
+      'Te coordonezi cu ceilalți executanți și cu reprezentanții constructorului pe șantier.',
+      'Ceri materialele necesare și ții evidența consumurilor și a sculelor din echipă.',
+      'Completezi fișele de lucru și procesele-verbale și raportezi zilnic administratorului.',
+      'Participi la probe și la punerea în funcțiune, apoi la predarea către beneficiar.',
     ],
+    requirements: [
+      'Experiență solidă în montaj HVAC (tubulatură, VRF, CTA). Numărul de ani se discută la interviu.',
+      'Experiență în conducerea unei echipe pe șantier.',
+      'Citire de planuri și scheme, organizare, comunicare clară.',
+      'Cunoștințe de securitate și sănătate în muncă pe șantier.',
+      'Disponibilitate pentru deplasări. Permisul categoria B este un avantaj.',
+    ],
+    offer: [],
+  },
+  {
+    slug: 'inginer-executie-instalatii-hvac',
+    active: true,
+    title: 'Inginer de execuție instalații HVAC',
+    type: 'Normă întreagă, 40 ore/săptămână',
+    place: 'Șantiere în Transilvania și birou în Florești, jud. Cluj',
+    date: '2026-11-02',
+    salary: { min: 6000, max: 7000 },
+    summary: 'Răspunzi tehnic de lucrările de HVAC: urmărești execuția după proiect, verifici cantitățile și ții legătura cu constructorul și beneficiarul.',
+    duties: [
+      'Urmărești execuția lucrărilor pe șantier conform proiectului și caietului de sarcini.',
+      'Verifici cantitățile și întocmești situațiile de lucrări.',
+      'Te coordonezi cu constructorul general, cu proiectantul și cu dirigintele de șantier.',
+      'Pregătești documentele de calitate și de recepție, împreună cu echipa de execuție.',
+      'Sprijini echipa la probe, reglaje și punerea în funcțiune și la predarea lucrării.',
+      'Ții evidența stadiului lucrărilor și raportezi administratorului.',
+    ],
+    requirements: [
+      'Studii superioare tehnice în instalații, mecanică sau domeniu înrudit.',
+      'Experiență în execuția instalațiilor HVAC (ventilație, climatizare, VRF, CTA).',
+      'Citire de proiecte și întocmire de situații de lucrări.',
+      'Cunoștințe de AutoCAD sau similar sunt un avantaj.',
+      'Disponibilitate pentru deplasări pe șantiere. Permisul categoria B este un avantaj.',
+    ],
+    offer: [],
+  },
+  {
+    slug: 'ajutor-instalator-hvac',
+    active: true,
+    title: 'Ajutor instalator HVAC',
+    type: 'Normă întreagă, 40 ore/săptămână',
+    place: 'Șantiere în Transilvania, cu punct de lucru în Florești, jud. Cluj',
+    date: '2026-11-02',
+    salary: { min: 4000, max: 5000 },
+    summary: 'Lucrezi în echipă cu instalatorii, înveți meseria pe șantiere reale și ajuți la montajul tubulaturii și al echipamentelor.',
+    duties: [
+      'Ajuți la montajul tubulaturii, al suporților și al echipamentelor.',
+      'Pregătești și transporți materialele și sculele pe șantier.',
+      'Execuți fixări, găuriri și izolații, după indicațiile instalatorului.',
+      'Menții locul de muncă curat și ordonat la sfârșitul zilei.',
+      'Înveți montajul HVAC și avansezi spre poziția de instalator.',
+    ],
+    requirements: [
+      'Experiența nu este obligatorie. Contează dorința de a învăța meseria.',
+      'Seriozitate, punctualitate și lucru în echipă.',
+      'Condiție fizică pentru lucru pe șantier, inclusiv la înălțime.',
+      'Disponibilitate pentru deplasări. Permisul categoria B este un avantaj.',
+    ],
+    offer: ['Formare la locul de muncă, alături de instalatori cu experiență.'],
   },
 ];

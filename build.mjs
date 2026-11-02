@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { articles } from './content/blog.mjs';
-import { jobs as allJobs } from './content/jobs.mjs';
+import { jobs as allJobs, common as jobCommon, SALARY_BASIS, DIURNA } from './content/jobs.mjs';
 const jobs = allJobs.filter((j) => j.active !== false);
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
@@ -656,17 +656,20 @@ layout({
 // ---------- scriere ----------
 
 // ---------- cariere ----------
+const DIURNA_TXT = DIURNA;
+const money = (n) => n.toLocaleString('ro-RO');
 const jobLd = (j) => ({
   '@context': 'https://schema.org', '@type': 'JobPosting', title: j.title, description: `<p>${esc(j.summary)}</p><ul>${j.duties.map((d) => `<li>${esc(d)}</li>`).join('')}</ul><p>Cerințe:</p><ul>${j.requirements.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>`,
   datePosted: j.date, employmentType: 'FULL_TIME', directApply: true,
   hiringOrganization: { '@type': 'Organization', name: 'A&A Industrial Systems S.R.L.', sameAs: SITE, logo: `${SITE}/assets/logo.png` },
   jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', streetAddress: 'Str. Răzoare nr. 206C', addressLocality: 'Florești', addressRegion: 'Cluj', addressCountry: 'RO' } },
-  occupationalCategory: '712606',
+  ...(j.salary ? { baseSalary: { '@type': 'MonetaryAmount', currency: 'RON', value: { '@type': 'QuantitativeValue', minValue: j.salary.min, maxValue: j.salary.max, unitText: 'MONTH' } } } : {}),
+  ...(j.code ? { occupationalCategory: j.code.replace('COR ', '') } : {}),
 });
 layout({
   url: '/cariere/',
   title: 'Cariere: locuri de muncă în HVAC în Cluj și Transilvania',
-  desc: 'Locuri de muncă la A&A Industrial Systems: instalator ventilare și condiționare aer. Trimite CV-ul direct de pe site.',
+  desc: 'Locuri de muncă la A&A Industrial Systems: instalator HVAC, șef de echipă, inginer de execuție și ajutor instalator, cu salarii și diurnă afișate. Trimite CV-ul de pe site.',
   current: '/cariere/',
   ld: [
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Acasă', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Cariere', item: SITE + '/cariere/' }] },
@@ -680,12 +683,14 @@ layout({
 <div class="jobs">
 ${jobs.map((j) => `<article class="job reveal" id="${j.slug}">
 <div class="job-head"><div><span class="post-meta">${esc(j.type)}</span><h3>${esc(j.title)}</h3><p class="job-sub">${esc(j.place)}</p></div><a class="btn accent" href="#aplica" data-job="${esc(j.title)}">Aplică ${I.arrow}</a></div>
+${j.salary ? `<div class="job-pay"><b>${money(j.salary.min)} – ${money(j.salary.max)} lei / lună, ${SALARY_BASIS}</b><span>+ diurnă ${DIURNA_TXT} lei/zi la deplasări, cazare și transport</span></div>` : ''}
 <p>${esc(j.summary)}</p>
+<details class="job-more"><summary>Vezi detalii</summary>
 <div class="job-cols">
 <div><h4>Ce vei face</h4><ul class="list">${j.duties.map((d) => `<li>${esc(d)}</li>`).join('')}</ul></div>
 <div><h4>Ce căutăm</h4><ul class="list">${j.requirements.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
-<h4 style="margin-top:28px">Ce oferim</h4><ul class="list">${j.offer.map((d) => `<li>${esc(d)}</li>`).join('')}</ul></div>
-</div></article>`).join('\n')}
+<h4 style="margin-top:28px">Ce oferim</h4><ul class="list">${[...(j.salary ? [`Salariu ${money(j.salary.min)} – ${money(j.salary.max)} lei ${SALARY_BASIS}/lună, în funcție de experiență.`] : []), ...j.offer, ...jobCommon].map((d) => `<li>${esc(d)}</li>`).join('')}</ul></div>
+</div></details></article>`).join('\n')}
 </div>
 </div></section>
 <section class="alt" id="aplica"><div class="wrap contact-grid">
