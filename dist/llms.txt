@@ -10,6 +10,7 @@
 - [Service și mentenanță](https://aaindustrialsystems.ro/servicii/service-mentenanta/): Contracte de mentenanță pentru split, VRF, CTA, chillere și pompe de căldură.
 
 ## Blog
+- [Verificarea pierderilor de agent frigorific (F-gaz): cât de des și cine o poate face](https://aaindustrialsystems.ro/blog/verificarea-pierderilor-de-agent-frigorific-f-gaz/): Regulamentul european F-gaz impune verificări periodice ale pierderilor de agent frigorific. Pragurile, frecvențele, cine are voie să le facă și ce să ceri în scris după verificare.
 - [Cât costă montajul unui sistem VRF într-o clădire publică](https://aaindustrialsystems.ro/blog/cat-costa-montajul-unui-sistem-vrf/): De ce nu există un preț unic pe metru pătrat pentru VRF, ce intră în ofertă și cum compari două oferte corect: material, manoperă, probe și punere în funcțiune.
 - [Ce include punerea în funcțiune a unei centrale de tratare a aerului (CTA)](https://aaindustrialsystems.ro/blog/punerea-in-functiune-a-unei-cta/): Pornirea unei CTA nu înseamnă punere în funcțiune. Lista verificărilor, măsurătorilor și a documentelor pe care ar trebui să le primești la predare.
 - [Mentenanța CTA la școli, creșe și săli de sport: ce se verifică și de ce](https://aaindustrialsystems.ro/blog/mentenanta-cta-scoli-cresa-sali-de-sport/): Ce se întâmplă cu o centrală de tratare a aerului fără mentenanță, ce lucrări se fac periodic și cum se stabilește frecvența pentru o clădire publică.

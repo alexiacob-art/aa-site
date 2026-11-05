@@ -1,6 +1,75 @@
 // Articole blog. Fără cifre inventate: prețurile și duratele depind de proiect și se confirmă în ofertă.
 export const articles = [
   {
+    slug: 'verificarea-pierderilor-de-agent-frigorific-f-gaz',
+    title: 'Verificarea pierderilor de agent frigorific (F-gaz): cât de des și cine o poate face',
+    desc: 'Regulamentul european F-gaz impune verificări periodice ale pierderilor de agent frigorific. Pragurile, frecvențele, cine are voie să le facă și ce să ceri în scris după verificare.',
+    img: 'lg-unitate-exterioara-pif',
+    imgAlt: 'Unitate exterioară VRF LG la punerea în funcțiune',
+    date: '2026-11-05',
+    min: 5,
+    service: 'service-mentenanta',
+    answer: 'Dacă un echipament de climatizare, pompă de căldură sau frigorific conține cel puțin 5 tone CO2 echivalent de gaz fluorurat, Regulamentul (UE) 2024/573 cere verificarea periodică a pierderilor. Frecvența crește odată cu cantitatea de agent: cel puțin la 12 luni sub 50 t CO2e, la 6 luni între 50 și 500 t și la 3 luni peste 500 t. Verificarea o face doar o persoană certificată. Responsabil de ea este operatorul, adică cel care folosește echipamentul.',
+    body: `
+<h2>Despre ce regulament vorbim</h2>
+<p>Gazele fluorurate cu efect de seră (F-gaz) sunt reglementate în Uniunea Europeană prin <a href="https://eur-lex.europa.eu/legal-content/RO/TXT/PDF/?uri=OJ:L_202400573" rel="noopener">Regulamentul (UE) 2024/573</a>. Se aplică direct și în România. Articolul 5 stabilește când și cum se verifică pierderile de agent frigorific la echipamentele fixe: climatizare, pompe de căldură, instalații frigorifice și altele.</p>
+
+<h2>Cum afli dacă echipamentul tău intră sub regulament</h2>
+<p>Contează cantitatea de agent frigorific exprimată în tone CO2 echivalent (CO2e). Se calculează așa:</p>
+<p><b>tone CO2e = cantitatea de agent în kg × GWP al agentului ÷ 1.000</b></p>
+<p>GWP-ul este potențialul de încălzire globală al gazului. Îl găsești pe fișa agentului sau în anexele regulamentului. Exemplu de calcul cu un GWP de 2.000, ales doar pentru ilustrare:</p>
+<ul>
+<li>2,4 kg de agent înseamnă 4,8 t CO2e, sub pragul de 5 t.</li>
+<li>8 kg înseamnă 16 t CO2e, peste prag, în prima categorie.</li>
+<li>30 kg înseamnă 60 t CO2e, în a doua categorie.</li>
+</ul>
+<p>Valoarea reală pentru echipamentul tău o confirmă instalatorul, pe baza agentului și a încărcăturii de pe plăcuță.</p>
+
+<h2>Cât de des se verifică</h2>
+<table>
+<thead><tr><th>Cantitatea de agent</th><th>Verificare la</th><th>Cu sistem de detecție a scurgerilor</th></tr></thead>
+<tbody>
+<tr><td>Între 5 și 50 t CO2e</td><td>cel puțin 12 luni</td><td>cel puțin 24 luni</td></tr>
+<tr><td>Între 50 și 500 t CO2e</td><td>cel puțin 6 luni</td><td>cel puțin 12 luni</td></tr>
+<tr><td>Peste 500 t CO2e</td><td>cel puțin 3 luni</td><td>cel puțin 6 luni</td></tr>
+</tbody></table>
+<p>Echipamentele ermetice etichetate ca atare sunt scutite sub 10 t CO2e. În clădirile de locuit, echipamentele ermetice cu sub 3 kg de agent sunt și ele scutite. Un sistem de detecție a scurgerilor este obligatoriu la echipamentele cu cel puțin 500 t CO2e.</p>
+
+<h2>De ce sistemele VRF intră de regulă sub regulament</h2>
+<p>Un sistem VRF pentru o clădire publică are, de obicei, mulți kilograme de agent frigorific în circuit. Mai multe unități exterioare și trasee lungi înseamnă o încărcătură mare. De aceea, sistemele VRF intră de regulă într-una dintre primele două categorii. Calculul exact se face pe fiecare sistem, cu încărcătura reală.</p>
+
+<h2>Cine are voie să facă verificarea</h2>
+<ul>
+<li>Verificările pierderilor la echipamentele fixe le face o persoană certificată conform articolului 10 din regulament.</li>
+<li>Firmele care instalează, repară sau întrețin echipamentele trebuie să fie certificate la rândul lor.</li>
+</ul>
+<p>Cere instalatorului să-ți arate certificarea persoanei și a firmei. Verificarea făcută de cineva necertificat nu îndeplinește obligația.</p>
+
+<h2>Cine răspunde</h2>
+<p>Obligația aparține operatorului, adică persoanei sau instituției care exercită controlul efectiv asupra funcționării echipamentului. Pentru o școală, o creșă sau o sală de sport, operatorul este de regulă instituția care o administrează. Un contract de mentenanță cu un executant certificat rezolvă obligația în mod organizat.</p>
+
+<h2>Ce ar trebui să primești după o verificare</h2>
+<ul>
+<li>Un raport scris cu data, echipamentul verificat și rezultatul.</li>
+<li>Numele și certificarea persoanei care a făcut verificarea.</li>
+<li>Locurile cu scurgeri, dacă au fost găsite, și remedierea făcută.</li>
+<li>Cantitatea de agent adăugată, dacă a fost nevoie.</li>
+</ul>
+<p>Păstrează rapoartele într-un dosar al echipamentului. Ele dovedesc că obligația a fost respectată.</p>
+
+<h2>Ce se întâmplă dacă se găsește o scurgere</h2>
+<p>Scurgerea trebuie reparată fără întârziere, iar după reparație se face o nouă verificare. O scurgere ignorată costă mai mult: pierzi agent frigorific, scade performanța, iar compresorul lucrează în condiții nefavorabile.</p>
+
+<h2>Sursa</h2>
+<p>Pragurile și frecvențele din acest articol sunt luate din articolul 5 al Regulamentului (UE) 2024/573. Pentru situații speciale (echipamente mobile, alte tipuri de agenți, reguli naționale de aplicare), verifică textul complet sau cere o confirmare scrisă de la un executant certificat.</p>`,
+    faq: [
+      ['Se aplică regulamentul și la aerul condiționat de tip split?', 'Da, dacă încărcătura de agent ajunge la cel puțin 5 t CO2e. Un split mic poate fi sub prag, iar în clădirile de locuit echipamentele ermetice cu sub 3 kg sunt scutite. Se calculează pe fiecare echipament.'],
+      ['Cine plătește verificarea, executantul sau beneficiarul?', 'Obligația aparține operatorului echipamentului, deci beneficiarul. Costul verificării se stabilește în ofertă sau în contractul de mentenanță.'],
+      ['Putem face verificarea cu personalul propriu?', 'Doar dacă persoana este certificată conform regulamentului. Altfel, verificarea trebuie făcută de o firmă și o persoană certificate.'],
+      ['Ce documente trebuie păstrate?', 'Rapoartele verificărilor, cu data, echipamentul, rezultatul și certificarea persoanei care a făcut controlul. Ține-le împreună cu dosarul instalației.'],
+    ],
+  },
+  {
     slug: 'cat-costa-montajul-unui-sistem-vrf',
     title: 'Cât costă montajul unui sistem VRF într-o clădire publică',
     desc: 'De ce nu există un preț unic pe metru pătrat pentru VRF, ce intră în ofertă și cum compari două oferte corect: material, manoperă, probe și punere în funcțiune.',
