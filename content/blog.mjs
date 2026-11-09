@@ -1,6 +1,140 @@
 // Articole blog. Fără cifre inventate: prețurile și duratele depind de proiect și se confirmă în ofertă.
 export const articles = [
   {
+    slug: 'ce-putere-trebuie-sa-aiba-aerul-conditionat',
+    title: 'Ce putere (BTU/kW) trebuie să aibă aerul condiționat pentru camera ta',
+    desc: 'Cum alegi puterea unui aparat de aer condiționat: ce înseamnă BTU și kW, de ce suprafața singură nu ajunge, ce mărește sarcina termică și ce se întâmplă dacă alegi prea mic sau prea mare.',
+    img: 'split-living',
+    imgAlt: 'Unitate interioară de aer condiționat într-un living',
+    date: '2026-11-09',
+    min: 5,
+    service: 'vrf-climatizare',
+    answer: 'Puterea potrivită depinde de sarcina termică a încăperii, nu doar de metrii pătrați: contează geamurile și orientarea, etajul și acoperișul, izolația, numărul de persoane și aparatele care produc căldură. Pentru conversie: 1 kW = 3.412 BTU/h, deci 9.000 BTU/h înseamnă cam 2,6 kW, 12.000 BTU/h cam 3,5 kW, iar 18.000 BTU/h cam 5,3 kW. Un aparat prea mic nu ține pasul vara, unul prea mare pornește și se oprește des. Pentru o estimare rapidă folosește calculatorul nostru, iar pentru spații mari sau comerciale cere un calcul de la un proiectant.',
+    body: `
+<h2>BTU și kW: aceeași mărime, unități diferite</h2>
+<p>Puterea de răcire a unui aparat se dă fie în kW, fie în BTU/h. Sunt unități pentru aceeași mărime, iar conversia este fixă: <b>1 kW = 3.412 BTU/h</b>. Aparatele din comerț au dimensiuni standard, iar tabelul de mai jos arată cam ce înseamnă fiecare în kW.</p>
+<table>
+<thead><tr><th>BTU/h</th><th>kW (aprox.)</th></tr></thead>
+<tbody>
+<tr><td>9.000</td><td>2,6</td></tr>
+<tr><td>12.000</td><td>3,5</td></tr>
+<tr><td>18.000</td><td>5,3</td></tr>
+<tr><td>24.000</td><td>7,0</td></tr>
+</tbody></table>
+<p>Valorile sunt rotunjite. Fișa tehnică a aparatului dă puterea nominală exactă.</p>
+
+<h2>De ce suprafața singură nu e suficientă</h2>
+<p>Regulile de tipul „atâția BTU pe metru pătrat” dau o idee de început, dar două camere de aceeași mărime pot avea nevoie de puteri foarte diferite. Aparatul trebuie să scoată din cameră căldura care intră sau se produce acolo. Cele mai importante surse sunt:</p>
+<ul>
+<li><b>Geamurile:</b> suprafața lor, orientarea (sud și vest încălzesc cel mai mult după-amiaza) și dacă au jaluzele sau folie.</li>
+<li><b>Etajul și acoperișul:</b> o cameră de la ultimul etaj, sub terasă sau mansardă, primește mult mai multă căldură decât una de la mijlocul clădirii.</li>
+<li><b>Izolația pereților și a acoperișului.</b></li>
+<li><b>Înălțimea camerei:</b> volumul de aer de răcit contează, nu doar podeaua.</li>
+<li><b>Persoanele:</b> fiecare persoană degajă căldură, iar într-o sală cu mulți oameni se simte clar.</li>
+<li><b>Aparatele electrice:</b> calculatoare, iluminat, cuptoare, echipamente de birou sau de bucătărie.</li>
+<li><b>Aerul proaspăt:</b> dacă se aduce aer din exterior, el trebuie răcit și el.</li>
+</ul>
+
+<h2>Ce se întâmplă dacă alegi greșit</h2>
+<ul>
+<li><b>Prea mic:</b> în zilele cele mai calde aparatul merge continuu și nu atinge temperatura dorită.</li>
+<li><b>Prea mare:</b> costă mai mult, iar la sarcini mici pornește și se oprește des, ceea ce înseamnă confort mai slab și uzură mai mare. Un aparat mai mare nu este automat mai bun.</li>
+</ul>
+<p>Scopul este o putere apropiată de sarcina reală, cu o mică rezervă.</p>
+
+<h2>Cum o estimezi în câțiva pași</h2>
+<ol>
+<li>Notează suprafața, înălțimea și etajul camerei.</li>
+<li>Notează geamurile: câte, cât de mari, spre ce parte.</li>
+<li>Numără persoanele care stau de obicei în cameră și aparatele care produc căldură.</li>
+<li>Introdu datele în <a href="/calculator-hvac/">calculatorul HVAC</a>. Primești o estimare în kW și în BTU/h.</li>
+<li>Alege din gama de aparate pe cea mai apropiată putere, de preferat cu inverter, care își reglează singură puterea.</li>
+</ol>
+<p>Estimarea de pe site este orientativă. Pentru un spațiu mare, o clădire publică sau un sistem cu mai multe unități interioare, dimensionarea se face prin calcul de sarcină termică, cu datele reale ale clădirii.</p>
+
+<h2>Contează și montajul</h2>
+<p>Un aparat bine ales poate da rezultate slabe dacă este montat prost: trasee prea lungi, pante greșite la condens, unitatea exterioară într-un loc fără aer sau lipsa vidării circuitului. Montajul făcut de un instalator care respectă tehnologia contează cât alegerea puterii.</p>
+`,
+    faq: [
+      ['Câți BTU îmi trebuie pentru o cameră?', 'Depinde de sarcina termică a camerei: geamuri, orientare, etaj, izolație, persoane și aparate. Suprafața dă doar o primă idee. Pentru o estimare, folosește calculatorul HVAC de pe site.'],
+      ['Cât înseamnă 12.000 BTU în kW?', 'Cam 3,5 kW, pentru că 1 kW este 3.412 BTU/h.'],
+      ['Este mai bine să aleg un aparat mai puternic, „să fiu sigur”?', 'Nu neapărat. Un aparat prea mare pornește și se oprește des, costă mai mult și poate da un confort mai slab. Alege o putere apropiată de necesar, cu o mică rezervă.'],
+      ['Când este nevoie de calcul de proiectant?', 'Pentru încăperi mari, clădiri publice, spații cu mulți oameni sau cu aport mare de aer proaspăt și când se montează un sistem cu mai multe unități interioare.']
+    ]
+  },
+  {
+    slug: 'filtre-aer-centrala-tratare-aer-clase-iso-16890',
+    title: 'Filtre pentru centrala de tratare a aerului: clase, ISO 16890 și când se schimbă',
+    desc: 'Ce înseamnă clasele de filtre G4, M5, F7 și noile grupe ISO 16890 (ePM1, ePM2,5, ePM10), cum se corelează orientativ și cum stabilești când se schimbă filtrele unei CTA.',
+    img: 'cta-ventas-acoperis-1',
+    imgAlt: 'Centrală de tratare a aerului montată pe acoperiș',
+    date: '2026-11-09',
+    min: 5,
+    service: 'ventilatie-cta',
+    answer: 'Standardul ISO 16890 a înlocuit EN 779:2012 pentru filtrele de ventilație generală. Filtrele se clasifică după eficiența pe particule PM1, PM2,5 și PM10, iar un filtru intră într-o grupă (ePM1, ePM2,5, ePM10) doar dacă atinge cel puțin 50%. Corespondența cu vechile clase G, M, F este orientativă, nu directă. Momentul schimbării depinde de căderea de presiune și de condițiile locului, nu de un calendar fix: urmărești diferența de presiune pe filtru și cerințele producătorului.',
+    body: `
+<h2>De la G4, M5, F7 la ISO 16890</h2>
+<p>Ani la rând, filtrele de aer pentru ventilație se numeau G4, M5, F7 și așa mai departe, după standardul EN 779. Acesta a fost înlocuit de <b>ISO 16890</b>, care măsoară eficiența filtrului pe masa de particule de diferite mărimi. Pe fișele tehnice vei întâlni în continuare ambele denumiri, de aceea e util să le știi pe amândouă.</p>
+
+<h2>Grupele ISO 16890</h2>
+<p>Particulele se grupează după mărime: PM10 (cele mai mari dintre cele considerate), PM2,5 și PM1 (cele mai fine). Un filtru trebuie să rețină cel puțin 50% dintr-o fracțiune ca să intre în grupa ei:</p>
+<table>
+<thead><tr><th>Grupă</th><th>Ce înseamnă</th></tr></thead>
+<tbody>
+<tr><td>ISO Coarse</td><td>Reține sub 50% din PM10. Filtre grosiere, de protecție.</td></tr>
+<tr><td>ISO ePM10</td><td>Cel puțin 50% din PM10</td></tr>
+<tr><td>ISO ePM2,5</td><td>Cel puțin 50% din PM2,5</td></tr>
+<tr><td>ISO ePM1</td><td>Cel puțin 50% din PM1</td></tr>
+</tbody></table>
+<p>Pe filtru sau în fișa tehnică vezi și procentul, de exemplu „ePM1 60%”. Procentele se dau din 5 în 5.</p>
+
+<h2>Corespondența cu clasele vechi</h2>
+<p>Nu există o echivalență directă, pentru că metodele de încercare sunt diferite. Tabelul de mai jos este orientativ și provine din datele publicate de producători. Pentru un filtru concret contează valoarea din fișa lui tehnică.</p>
+<table>
+<thead><tr><th>Clasă veche</th><th>Aproximativ în ISO 16890</th></tr></thead>
+<tbody>
+<tr><td>G3, G4</td><td>ISO Coarse (în jur de 80–90%)</td></tr>
+<tr><td>M5</td><td>ePM10 cel puțin 50%</td></tr>
+<tr><td>M6</td><td>ePM2,5 cel puțin 50%</td></tr>
+<tr><td>F7</td><td>ePM1 cel puțin 50%, ePM2,5 cel puțin 65%</td></tr>
+<tr><td>F8</td><td>ePM1 cel puțin 65%</td></tr>
+<tr><td>F9</td><td>ePM1 cel puțin 80%</td></tr>
+</tbody></table>
+<p>De exemplu, un filtru F7 poate fi înlocuit cu unul marcat „ISO ePM1 60%”, dacă producătorul CTA acceptă.</p>
+
+<h2>Cum alegi clasa potrivită</h2>
+<ul>
+<li>Respecți ce cere <b>proiectul</b> și <b>producătorul centralei</b>. Ventilatorul și carcasa sunt calculate pentru anumite filtre.</li>
+<li>Un filtru mai fin înseamnă rezistență mai mare la trecerea aerului. Dacă pui o clasă mai fină decât a fost prevăzută, debitul și consumul se schimbă.</li>
+<li>Pentru școli, creșe și săli de sport, un etaj de prefiltrare și unul de filtrare fină, ca în multe proiecte, protejează centrala și aerul din clase.</li>
+</ul>
+
+<h2>Când se schimbă filtrele</h2>
+<p>Nu există o dată universală. Un filtru se schimbă când a ajuns la căderea de presiune finală indicată de producător, sau mai devreme dacă este deteriorat, ud ori vizibil colmatat. Practic:</p>
+<ol>
+<li>Măsoară căderea de presiune pe fiecare etaj de filtrare, cu manometru sau presostat diferențial.</li>
+<li>Compară cu valoarea finală din fișa filtrului.</li>
+<li>Inspectează vizual filtrele la fiecare vizită de mentenanță.</li>
+<li>Notează data și clasa montată în fișa echipamentului.</li>
+</ol>
+<p>Locul contează: lângă trafic intens, în perioada polenului sau în zone cu praf, filtrele se colmatează mai repede.</p>
+
+<h2>Ce se întâmplă cu filtrele prea vechi</h2>
+<ul>
+<li>Crește rezistența, scade debitul de aer și, la unele sisteme, crește consumul ventilatorului.</li>
+<li>Schimbătoarele de căldură și bateriile se murdăresc, iar randamentul scade.</li>
+<li>Un filtru rupt sau montat strâmb lasă aerul să treacă pe lângă el.</li>
+</ul>
+<p>În clădirile publice, schimbarea filtrelor la timp se face cel mai simplu printr-un <a href="/servicii/service-mentenanta/">contract de mentenanță</a> cu verificări programate.</p>
+`,
+    faq: [
+      ['Ce înseamnă ePM1 pe un filtru?', 'Că filtrul reține cel puțin 50% din particulele fine din fracțiunea PM1, conform ISO 16890. Procentul exact este scris lângă, de exemplu ePM1 60%.'],
+      ['Un filtru F7 este același lucru cu ePM1?', 'Nu exact. Corespondența este orientativă, pentru că metodele de încercare diferă. Un F7 se apropie de un filtru ePM1 cu cel puțin 50%. Verifică fișa tehnică.'],
+      ['La cât timp se schimbă filtrele unei CTA?', 'Nu există un interval valabil pentru toate. Se schimbă când ajung la căderea de presiune finală dată de producător sau când sunt deteriorate. Se verifică la fiecare vizită de mentenanță.'],
+      ['Pot pune un filtru mai fin decât cel din proiect?', 'Doar dacă centrala permite. Un filtru mai fin crește rezistența și poate scădea debitul. Confirmă cu proiectantul sau cu producătorul.']
+    ]
+  },
+  {
     slug: 'verificarea-pierderilor-de-agent-frigorific-f-gaz',
     title: 'Verificarea pierderilor de agent frigorific (F-gaz): cât de des și cine o poate face',
     desc: 'Regulamentul european F-gaz impune verificări periodice ale pierderilor de agent frigorific. Pragurile, frecvențele, cine are voie să le facă și ce să ceri în scris după verificare.',
